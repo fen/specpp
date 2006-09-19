@@ -1,0 +1,6 @@
+path-constant TOP : . ;
+path-constant BUILD_DIR : ./bin ;
+
+use-project /thebc/timer : libs/timer/build/ ;
+
+

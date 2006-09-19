@@ -1,0 +1,25 @@
+project thebc/timer
+    :
+    source-location ../examples/timer1
+    ;
+
+SOURCES =
+    timer1 ;
+
+lib thebc_network
+    :
+    $(SOURCES).cpp
+    :
+    <link>shared:<define>BOOST_FILESYSTEM_DYN_LINK=1 # tell source we're buildin g dll's
+    ;
+
+install dist-lib
+    :
+    boost_filesystem
+    :
+    <install-type>LIB
+    <location>../../../dist/lib
+    ;
+
+explicit dist-lib ;
+
