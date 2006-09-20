@@ -113,8 +113,17 @@ namespace spec
 
         if(iter != reged_context_storage_m.end())
         {
+			try
+			{
+				(context_m.*((*iter).second))();
+			} 
+			catch(...)
+			{
+				context_m.dummy_m = false;
+				throw;
+			}
             // execute the test case
-            (context_m.*((*iter).second))();
+            
 
             if(!context_m.dummy_m)
             {
@@ -137,7 +146,7 @@ namespace spec
     */
     template<typename ContextT, int MaxSpecifyers>
     void context_handler<ContextT, MaxSpecifyers>::register_specifyer(identifier_type const& identifier, 
-													specifyer_pointer ptr)
+                                                    specifyer_pointer ptr)
     {
        reged_context_storage_m[identifier] = ptr; 
     }

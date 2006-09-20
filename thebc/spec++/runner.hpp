@@ -17,29 +17,56 @@
 namespace spec
 {
 /*************************************************************************************************/
-	class runner
-	{
-	public:
-		typedef detail::impl::result						result;
+    class runner
+    {
+    public:
+        typedef detail::impl::result                        result;
+        typedef runnable_contexts<context_registration>     runnable_type;
 
-		runner(int argc, char** argv);
+        runner(int argc, char** argv);
 
-		template<typename T>
-        result& operator()(int a);
-	};
+        result& run();
 
-/*************************************************************************************************/
-
-	runner::runner(int argc, char** argv)
-	{
-	}
+	private:
+    };
 
 /*************************************************************************************************/
 
-	template<typename T>
-    runner::result& runner::operator()(int a)
-	{
-	}
+    runner::runner(int argc, char** argv)
+    {
+    }
+
+/*************************************************************************************************/
+
+	
+
+    runner::result& runner::run()
+    {
+        // Get all contexts that are runnable
+        runnable_type runnable;
+        runnable_type::iterator iter = runnable.begin();
+        for( runnable_type::iterator end = runnable.end();
+             iter != end; ++iter)
+        {
+			for(int i = 1;
+				i < runnable.number_of_specifyers(iter); ++i)
+			{
+				try
+				{
+					if(runnable.run(iter, i))
+					{
+						// log the result as AS_SPECIFYED
+						std::cout << "log" << i << std::endl;
+					}
+				}
+				catch(...)
+				{
+					std::cout << "Handling exception" << std::endl;
+				}
+			}
+        }
+		std::cout << "end" << std::endl;
+    }
 
 /*************************************************************************************************/
 

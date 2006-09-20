@@ -3,24 +3,25 @@
 
 #define context( TEXT, FIXTURE ) \
     namespace FIXTURE##_namespace{\
+		using namespace spec;\
         template<typename FIXTURE>\
         struct abstract : FIXTURE\
         {\
             template<int n>\
             void specify_func()\
             {\
-				dummy_m = true;\
+                dummy_m = true;\
             }\
             template<int n>\
             void register_info()\
             {\
             }\
-			bool dummy_m;\
+            bool dummy_m;\
             std::map<int, std::string> specify_text;\
             std::map<int, int> specify_line;\
             std::map<int, std::string> specify_file;\
         };\
-        typedef spec::context_handler<FIXTURE##_namespace::abstract<FIXTURE> > data;\
+        typedef context_handler<FIXTURE##_namespace::abstract<FIXTURE> > data;\
         data object(TEXT);\
     }\
     namespace FIXTURE##_namespace

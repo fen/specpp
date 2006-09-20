@@ -22,7 +22,7 @@ namespace spec
     class runnable_contexts
     {
     public:
-        typedef RegistrationT									registration_type;
+        typedef RegistrationT                                   registration_type;
         typedef typename registration_type::instance_type       instance_type;
         typedef typename instance_type::value_type              value_type;
         typedef typename instance_type::identifier_type         identifier_type;
@@ -46,11 +46,11 @@ namespace spec
 
         void run(iterator const& iter);
 
-        void run(iterator const& iter, int specifyer);
+        bool run(iterator const& iter, int specifyer);
 
         void run(identifier_type const& identifier);
 
-        void run(identifier_type const& identifier, int specifyer);
+        bool run(identifier_type const& identifier, int specifyer);
 
         /* REVISIT (fred) : void run(iterator const& start, iterator const& end) */
 
@@ -136,9 +136,9 @@ namespace spec
 /*************************************************************************************************/
 
     template<typename T>
-    void runnable_contexts<T>::run(iterator const& iter, int specifyer)
+    bool runnable_contexts<T>::run(iterator const& iter, int specifyer)
     {
-        (*iter).second->run(specifyer);
+        return (*iter).second->run(specifyer);
     }
 
 /*************************************************************************************************/
@@ -149,20 +149,21 @@ namespace spec
         iterator iter = runnable_contexts_m.find(identifier);
         if(iter != end())
         {
-            run(iter);
+           run(iter);
         }
     }
 
 /*************************************************************************************************/
 
     template<typename T>
-    void runnable_contexts<T>::run(identifier_type const& identifier, int specifyer)
+    bool runnable_contexts<T>::run(identifier_type const& identifier, int specifyer)
     {
         iterator iter = runnable_contexts_m.find(identifier);
         if(iter != end())
         {
-            run(iter,specifyer);
+           return run(iter,specifyer);
         }
+		return false;
     }
 
 /*************************************************************************************************/
