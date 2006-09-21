@@ -33,31 +33,31 @@ namespace spec
             template<typename T>
             struct should
             {
-                explicit should(T& value)
-                : value_m(value){}
+                explicit should(T& actual)
+                : actual_m(actual){}
 
                 template<typename T1>
-                bool equal(T1 const& value) const
+                bool equal(T1 const& expected) const
                 {
-                    if(value_m != value)
+                    if(actual_m != expected)
                     {
                         throw 1;
                     }
                 }
 
                 template<typename T1>
-                bool not_equal(T1 const& value) const
+                bool not_equal(T1 const& expected) const
                 {
-                    if(value_m == value)
+                    if(actual_m == expected)
                     {
                         throw 1;
                     }
                 }
 
                 template<typename T1>
-                bool be_more_than(T1 const& value) const
+                bool be_more_than(T1 const& lower_bound) const
                 {
-                    if(value_m > value)
+                    if(actual_m > lower_bound)
                     {
                         return true;
                     }
@@ -65,9 +65,9 @@ namespace spec
                 }
 
                 template<typename T1>
-                bool be_less_than(T1 const& value) const
+                bool be_less_than(T1 const& upper_bound) const
                 {
-                    if(value_m < value)
+                    if(actual_m < upper_bound)
                     {
                         return true;
                     }
@@ -75,46 +75,46 @@ namespace spec
                 }
 
                 template<typename T1>
-                between<T1> be_between(T1 const& value) const
+                between<T1> be_between(T1 const& lower_bound) const
                 {
-                    if(value_m > value)
+                    if(actual_m > lower_bound)
                     {
-                        return between<T1>(value_m);
+                        return between<T1>(actual_m);
                     }
                     throw 1;
                 }
 
                 template<typename T1>
-                between_equal<T1> be_between_or_equal_to(T1 const& value) const
+                between_equal<T1> be_between_or_equal_to(T1 const& lower_bound) const
                 {
-                    if(value_m >= value)
+                    if(actual_m >= lower_bound)
                     {
-                        return between_equal<T1>(value_m);
+                        return between_equal<T1>(actual_m);
                     }
                     throw 1;
                 }
 
                 template<typename T1>
-                within<T1> be_within(T1 const& value) const
+                within<T1> be_within(T1 const& range) const
                 {
-                    return within<T1>(value_m, value);
+                    return within<T1>(actual_m, range);
                 }
 
 
 
-                T& value_m;
+                T& actual_m;
             };
 
             template<typename T>
             struct between
             {
-                explicit between(T& value)
-                :value_m(value){}
+                explicit between(T& actual)
+                :actual_m(actual){}
 
                 template<typename T1>
-                bool And(T1 const& value)
+                bool And(T1 const& upper_bound)
                 {
-                    if(value_m < value)
+                    if(actual_m < upper_bound)
                     {
                         return true;
                     }
@@ -123,9 +123,9 @@ namespace spec
                 }
 
                 template<typename T1>
-                bool operator&&(T1 const& value)
+                bool operator&&(T1 const& upper_bound)
                 {
-                    if(value_m < value)
+                    if(actual_m < upper_bound)
                     {
                         return true;
                     }
@@ -133,19 +133,19 @@ namespace spec
                     throw 1;
                 }
 
-                T& value_m;
+                T& actual_m;
             };
 
             template<typename T>
             struct between_equal
             {
-                explicit between_equal(T& value)
-                :value_m(value){}
+                explicit between_equal(T& actual)
+                :actual_m(actual){}
 
                 template<typename T1>
-                bool And(T1 const& value)
+                bool And(T1 const& upper_bound)
                 {
-                    if(value_m <= value)
+                    if(actual_m <= upper_bound)
                     {
                         return true;
                     }
@@ -154,9 +154,9 @@ namespace spec
                 }
 
                 template<typename T1>
-                bool operator&&(T1 const& value)
+                bool operator&&(T1 const& expected)
                 {
-                    if(value_m <= value)
+                    if(actual_m <= expected)
                     {
                         return true;
                     }
@@ -164,20 +164,20 @@ namespace spec
                     throw 1;
                 }
 
-                T& value_m;
+                T& actual_m;
             };
 
             template<typename T>
             struct within
             {
-                explicit within(T& value, T const& range)
-                : value_m(value), range_m(range){}
+                explicit within(T& actual, T const& range)
+                : actual_m(actual), range_m(range){}
 
                 template<typename T1>
                 bool of(T1 const& expected)
                 {
-                    if((value_m - range_m) >= expected
-                       || (value_m + range_m) <= expected)
+                    if((actual_m - range_m) >= expected
+                       || (actual_m + range_m) <= expected)
                     {
                         return true;
                     }
@@ -185,7 +185,7 @@ namespace spec
                     throw 1;
                 }
 
-                T& value_m;
+                T& actual_m;
                 T range_m;
             };
 
@@ -193,9 +193,9 @@ namespace spec
     }
 
     template<typename T>
-    spec_t<T> value(T const& v)
+    spec_t<T> value(T const& actual)
     {
-        return spec_t<T>(v);
+        return spec_t<T>(actual);
     }
 
     void violated(std::string const& message)
@@ -207,12 +207,12 @@ namespace spec
     template<typename T>
     struct spec_t
     {
-        spec_t(T const& value)
-        : value_m(value), should(value_m), must(value_m){}
+        spec_t(T const& actual)
+        : actual_m(actual), should(actual_m), must(actual_m){}
 
         detail::impl::should<T> should;
         detail::impl::should<T> must;
-        T value_m;
+        T actual_m;
     };
 } // namespace spec
 
