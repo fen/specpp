@@ -3,7 +3,6 @@
 
 #define context( TEXT, FIXTURE ) \
     namespace FIXTURE##_namespace{\
-		using namespace spec;\
         template<typename FIXTURE>\
         struct abstract : FIXTURE\
         {\
@@ -21,12 +20,13 @@
             std::map<int, int> specify_line;\
             std::map<int, std::string> specify_file;\
         };\
-        typedef context_handler<FIXTURE##_namespace::abstract<FIXTURE> > data;\
+        typedef spec::context_handler<FIXTURE##_namespace::abstract<FIXTURE> > data;\
         data object(TEXT);\
     }\
     namespace FIXTURE##_namespace
 
 /* REVISIT (fred) : The registration of TEXT __LINE__ __FILE__ has to be done better.*/
+/* REVISIT (fred) : It would be nice if IDENTIFIER could be removed and have sort of auto incremented macros or template */
 #define specify( TEXT, IDENTIFIER ) \
     template<>\
     template<>\
