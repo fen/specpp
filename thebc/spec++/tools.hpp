@@ -1,5 +1,5 @@
 // Spec++ tools.hpp  ---------------------------------------------------------//
-// © Copyright Fredrik Eriksson. 
+// © Copyright Fredrik Eriksson.
 
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
@@ -23,8 +23,12 @@ namespace spec
         {
             template<typename T>
             struct between;
+
             template<typename T>
             struct between_equal;
+
+            template<typename T>
+            struct within;
 
             template<typename T>
             struct should
@@ -90,7 +94,13 @@ namespace spec
                     throw 1;
                 }
 
-                
+                template<typename T1>
+                within<T1> be_within(T1 const& value) const
+                {
+                    return within<T1>(value_m, value);
+                }
+
+
 
                 T& value_m;
             };
@@ -156,6 +166,29 @@ namespace spec
 
                 T& value_m;
             };
+
+            template<typename T>
+            struct within
+            {
+                explicit within(T& value, T const& range)
+                : value_m(value), range_m(range){}
+
+                template<typename T1>
+                bool of(T1 const& expected)
+                {
+                    if((value_m - range_m) >= expected
+                       || (value_m + range_m) <= expected)
+                    {
+                        return true;
+                    }
+
+                    throw 1;
+                }
+
+                T& value_m;
+                T range_m;
+            };
+
         }
     }
 

@@ -53,6 +53,11 @@ context("Example of Spec++", test_data)
     {
         value( 10 ).should.be_between_or_equal_to(10)and(20);
     }
+
+    specify("example10", 10)
+    {
+        value( 10.5f ).should.be_within(0.5f).of(11.0f);
+    }
 }
 
 int main(int argc, char* argv[])
