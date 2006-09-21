@@ -1,5 +1,5 @@
 // Spec++ runner.hpp  --------------------------------------------------------//
-// © Copyright Fredrik Eriksson. 
+// © Copyright Fredrik Eriksson.
 
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
@@ -27,7 +27,7 @@ namespace spec
 
         result& run();
 
-	private:
+    private:
     };
 
 /*************************************************************************************************/
@@ -38,7 +38,7 @@ namespace spec
 
 /*************************************************************************************************/
 
-	
+
 
     runner::result& runner::run()
     {
@@ -48,24 +48,24 @@ namespace spec
         for( runnable_type::iterator end = runnable.end();
              iter != end; ++iter)
         {
-			for(int i = 1;
-				i < runnable.number_of_specifyers(iter); ++i)
-			{
-				try
-				{
-					if(runnable.run(iter, i))
-					{
-						// log the result as AS_SPECIFYED
-						std::cout << "log" << i << std::endl;
-					}
-				}
-				catch(...)
-				{
-					std::cout << "Handling exception" << std::endl;
-				}
-			}
+            for(runnable_type::size_type i = 1;
+                i < runnable.number_of_specifyers(iter); ++i)
+            {
+                try
+                {
+                    if(runnable.run(iter, i))
+                    {
+                        // log the result as AS_SPECIFYED
+                        std::cout << "log" << i << std::endl;
+                    }
+                }
+                catch(...)
+                {
+                    std::cout << "Handling exception" << std::endl;
+                }
+            }
         }
-		std::cout << "end" << std::endl;
+        std::cout << "end" << std::endl;
     }
 
 /*************************************************************************************************/

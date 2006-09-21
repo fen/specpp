@@ -39,19 +39,22 @@ namespace spec
                 template<typename T1>
                 bool equal(T1 const& expected) const
                 {
-                    if(actual_m != expected)
+                    if(actual_m == expected)
                     {
-                        throw 1;
+                        return true;
                     }
+                    throw 1;
                 }
 
                 template<typename T1>
                 bool not_equal(T1 const& expected) const
                 {
-                    if(actual_m == expected)
+                    if(actual_m != expected)
                     {
-                        throw 1;
+                        return true;
                     }
+
+                    throw 1;
                 }
 
                 template<typename T1>
@@ -210,9 +213,9 @@ namespace spec
         spec_t(T const& actual)
         : actual_m(actual), should(actual_m), must(actual_m){}
 
+        T actual_m;
         detail::impl::should<T> should;
         detail::impl::should<T> must;
-        T actual_m;
     };
 } // namespace spec
 
