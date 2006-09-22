@@ -34,27 +34,27 @@ context("Example of Spec++", test_data)
         violated("message");
     }
 
-    specify("example6.", 6)
+    specify("example6 should be between 5 and 20", 6)
     {
         value( 10 ).should.be_between(5).And(20);
     }
 
-    specify("example7.", 7)
+    specify("example7 10 should be between or equal to 10.", 7)
     {
         value( 10 ).should.be_between_or_equal_to(10).And(20);
     }
 
-    specify("example8.", 8)
+    specify("example8 10 should be between 5 and 20.", 8)
     {
         value( 10 ).should.be_between(5)and(20);
     }
 
-    specify("example9.", 9)
+    specify("example9 10 should be between or equal to 10 and 20.", 9)
     {
         value( 10 ).should.be_between_or_equal_to(10)and(20);
     }
 
-    specify("example10", 10)
+    specify("example10 10.5 shoudl be within 0.5f of 11.0f.", 10)
     {
         value( 10.5f ).should.be_within( 0.5f ).of( 11.0f );
     }

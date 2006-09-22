@@ -61,6 +61,8 @@ namespace spec
         std::string const& context_description(iterator const& iter);
 
         std::string const& specify_description(iterator const& iter, int specifyer);
+        std::string const& specify_file(iterator const& iter, int specifyer);
+        int specify_line(iterator const& iter, int specifyer);
 
     private:
         value_type runnable_contexts_m;
@@ -201,6 +203,17 @@ namespace spec
 
 /*************************************************************************************************/
 
+    template<typename T>
+    std::string const& runnable_contexts<T>::specify_file(iterator const& iter, int specifyer)
+    {
+        return (*iter).second->specify_file(specifyer);
+    }
+
+    template<typename T>
+    int runnable_contexts<T>::specify_line(iterator const& iter, int specifyer)
+    {
+        return (*iter).second->specify_line(specifyer);
+    }
 
 }
 /*************************************************************************************************/

@@ -51,12 +51,12 @@ namespace spec
             return context_m.specify_text[identifier];
         }
 
-        std::string& specifyer_file(identifier_type const& identifier)
+        std::string& specify_file(identifier_type const& identifier)
         {
             return context_m.specify_file[identifier];
         }
 
-        int specifyer_line(identifier_type const& identifier)
+        int specify_line(identifier_type const& identifier)
         {
             return context_m.specify_line[identifier];
         }

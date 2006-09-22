@@ -27,8 +27,8 @@ namespace spec
         virtual std::size_t size() = 0;
         virtual std::string const& context_description() = 0;
         virtual std::string const& specify_description(identifier_type const& identifier) = 0;
-        virtual std::string& specifyer_file(identifier_type const& identifier) = 0;
-        virtual int specifyer_line(identifier_type const& identifier) = 0;
+        virtual std::string& specify_file(identifier_type const& identifier) = 0;
+        virtual int specify_line(identifier_type const& identifier) = 0;
     };
 
 /*************************************************************************************************/

@@ -57,7 +57,10 @@ namespace spec
                     if(runnable.run(iter, i))
                     {
                         // log the result as AS_SPECIFYED
-                        std::cout << runnable.specify_description(iter,i) << std::endl;
+                        std::cout << runnable.specify_description(iter,i) << '\n'
+                                  << runnable.specify_file(iter, i) << '\n'
+                                  << runnable.specify_line(iter, i) << '\n'
+                                  << std::endl;
                     }
                 }
                 catch(...)
