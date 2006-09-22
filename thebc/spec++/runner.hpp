@@ -48,6 +48,7 @@ namespace spec
         for( runnable_type::iterator end = runnable.end();
              iter != end; ++iter)
         {
+            std::cout << runnable.context_description(iter) << std::endl;
             for(int i = 1;
                 i < runnable.number_of_specifyers(iter); ++i)
             {
@@ -56,7 +57,7 @@ namespace spec
                     if(runnable.run(iter, i))
                     {
                         // log the result as AS_SPECIFYED
-                        std::cout << "log" << i << std::endl;
+                        std::cout << runnable.specify_description(iter,i) << std::endl;
                     }
                 }
                 catch(...)

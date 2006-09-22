@@ -40,9 +40,25 @@ namespace spec
         std::size_t size();
 
         bool run(identifier_type const& identifier);
-        std::string& specifyer_text(identifier_type const& identifier)
+
+        std::string const& context_description()
+        {
+            return context_description_m;
+        }
+
+        std::string const& specify_description(identifier_type const& identifier)
         {
             return context_m.specify_text[identifier];
+        }
+
+        std::string& specifyer_file(identifier_type const& identifier)
+        {
+            return context_m.specify_file[identifier];
+        }
+
+        int specifyer_line(identifier_type const& identifier)
+        {
+            return context_m.specify_line[identifier];
         }
 
     private:
@@ -73,6 +89,7 @@ namespace spec
         value_type reged_context_storage_m;
         value_type reged_info_storage_m;
         context context_m;
+        std::string context_description_m;
     };
 
 /*************************************************************************************************/
@@ -83,10 +100,11 @@ namespace spec
                     there fore has to be unique.
     */
     template<typename ContextT, int MaxSpecifyers>
-    context_handler<ContextT, MaxSpecifyers>::context_handler(std::string const& text)
+    context_handler<ContextT, MaxSpecifyers>::context_handler(std::string const& description)
+    : context_description_m(description)
     {
         context_registration::pointer ptr;
-        ptr->register_context(text, this);
+        ptr->register_context(context_description_m, this);
         // do a regursive register of all the test cases for this test suite
         recursive<MaxSpecifyers>::recurv(*this);
 

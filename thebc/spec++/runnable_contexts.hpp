@@ -58,6 +58,10 @@ namespace spec
 
         size_type number_of_specifyers(iterator const& iter);
 
+        std::string const& context_description(iterator const& iter);
+
+        std::string const& specify_description(iterator const& iter, int specifyer);
+
     private:
         value_type runnable_contexts_m;
 
@@ -182,8 +186,20 @@ namespace spec
         return (*iter).second->size();
     }
 
+/*************************************************************************************************/
+    template<typename T>
+    std::string const& runnable_contexts<T>::context_description(iterator const& iter)
+    {
+        return (*iter).second->context_description();
+    }
+/*************************************************************************************************/
+    template<typename T>
+    std::string const& runnable_contexts<T>::specify_description(iterator const& iter, int specifyer)
+    {
+        return (*iter).second->specify_description(specifyer);
+    }
 
-
+/*************************************************************************************************/
 
 
 }

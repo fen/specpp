@@ -25,6 +25,10 @@ namespace spec
         virtual ~base_context_handler(){}
         virtual bool run(identifier_type const&) = 0;
         virtual std::size_t size() = 0;
+        virtual std::string const& context_description() = 0;
+        virtual std::string const& specify_description(identifier_type const& identifier) = 0;
+        virtual std::string& specifyer_file(identifier_type const& identifier) = 0;
+        virtual int specifyer_line(identifier_type const& identifier) = 0;
     };
 
 /*************************************************************************************************/

@@ -56,7 +56,7 @@ context("Example of Spec++", test_data)
 
     specify("example10", 10)
     {
-        value( 10.5f ).should.be_within(0.5f).of(11.0f);
+        value( 10.5f ).should.be_within( 0.5f ).of( 11.0f );
     }
 }
 
@@ -64,6 +64,8 @@ int main(int argc, char* argv[])
 {
     spec::runner r(argc, argv);
     r.run();
+
+    spec::context_registration::destroy();
 
     //spec::runner::result = r.run();
 
