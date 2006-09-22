@@ -1,5 +1,5 @@
 // Spec++ context_handler.hpp  -----------------------------------------------//
-// © Copyright Fredrik Eriksson. 
+// © Copyright Fredrik Eriksson.
 
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
@@ -29,6 +29,7 @@ namespace spec
     public:
         typedef ContextT                                        context;
 
+        /* REVISIT (fred) : boost::function should be used this is not readable */
         typedef void (context::*specifyer_pointer)();           //specifyer_pointer
 
         typedef std::map<identifier_type, specifyer_pointer>    value_type;
@@ -39,10 +40,16 @@ namespace spec
         std::size_t size();
 
         bool run(identifier_type const& identifier);
+        std::string& specifyer_text(identifier_type const& identifier)
+        {
+            return context_m.specify_text[identifier];
+        }
 
     private:
-        void register_specifyer(identifier_type const& identifier, 
+        void register_specifyer(identifier_type const& identifier,
                                 specifyer_pointer ptr);
+        void register_specifyer_information(identifier_type const& identifier,
+                                            specifyer_pointer ptr);
 
         template<int N, typename T=void>
         class recursive
@@ -51,6 +58,7 @@ namespace spec
             static void recurv(context_handler& con)
             {
                 con.register_specifyer(N, &context::template specify_func<N>);
+                con.register_specifyer_information(N, &context::template register_info<N>);
                 recursive<N-1>::recurv(con);
             }
         };
@@ -63,6 +71,7 @@ namespace spec
         };
 
         value_type reged_context_storage_m;
+        value_type reged_info_storage_m;
         context context_m;
     };
 
@@ -70,7 +79,7 @@ namespace spec
 
     /*!
         Default constructor that registrate a test suite with a unique \c name.
-        \param name name of the test suite this name is used to identifie this test suite and 
+        \param name name of the test suite this name is used to identifie this test suite and
                     there fore has to be unique.
     */
     template<typename ContextT, int MaxSpecifyers>
@@ -80,6 +89,7 @@ namespace spec
         ptr->register_context(text, this);
         // do a regursive register of all the test cases for this test suite
         recursive<MaxSpecifyers>::recurv(*this);
+
     }
 
 /*************************************************************************************************/
@@ -113,17 +123,18 @@ namespace spec
 
         if(iter != reged_context_storage_m.end())
         {
-			try
-			{
-				(context_m.*((*iter).second))();
-			} 
-			catch(...)
-			{
-				context_m.dummy_m = false;
-				throw;
-			}
+            (context_m.*((*reged_info_storage_m.find(identifier)).second))();
+            try
+            {
+                (context_m.*((*iter).second))();
+            }
+            catch(...)
+            {
+                context_m.dummy_m = false;
+                throw;
+            }
             // execute the test case
-            
+
 
             if(!context_m.dummy_m)
             {
@@ -145,13 +156,19 @@ namespace spec
         \param testcase_ptr pointer to the test case method.
     */
     template<typename ContextT, int MaxSpecifyers>
-    void context_handler<ContextT, MaxSpecifyers>::register_specifyer(identifier_type const& identifier, 
+    void context_handler<ContextT, MaxSpecifyers>::register_specifyer(identifier_type const& identifier,
                                                     specifyer_pointer ptr)
     {
-       reged_context_storage_m[identifier] = ptr; 
+       reged_context_storage_m[identifier] = ptr;
     }
 
 /*************************************************************************************************/
+    template<typename ContextT, int MaxSpecifyers>
+    void context_handler<ContextT, MaxSpecifyers>::register_specifyer_information(identifier_type const& identifier,
+                                        specifyer_pointer ptr)
+    {
+        reged_info_storage_m[identifier] = ptr;
+    }
 
 
 } // namespace spec

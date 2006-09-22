@@ -95,9 +95,9 @@ namespace spec
                 }
 
                 template<typename T1>
-                within<T1> be_within(T1 const& range) const
+                within<T1> be_within(T1 const& tolerance) const
                 {
-                    return within<T1>(actual_m, range);
+                    return within<T1>(actual_m, tolerance);
                 }
 
 
@@ -170,14 +170,14 @@ namespace spec
             template<typename T>
             struct within
             {
-                explicit within(T& actual, T const& range)
-                : actual_m(actual), range_m(range){}
+                explicit within(T& actual, T const& tolerance)
+                : actual_m(actual), tolerance_m(tolerance){}
 
                 template<typename T1>
                 bool of(T1 const& expected)
                 {
-                    if((actual_m - range_m) >= expected
-                       || (actual_m + range_m) <= expected)
+                    if((actual_m - tolerance_m) >= expected
+                       || (actual_m + tolerance_m) <= expected)
                     {
                         return true;
                     }
@@ -186,7 +186,7 @@ namespace spec
                 }
 
                 T& actual_m;
-                T range_m;
+                T tolerance_m;
             };
 
         }

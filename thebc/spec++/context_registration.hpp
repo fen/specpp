@@ -1,5 +1,5 @@
 // Spec++ context_registration.hpp  ------------------------------------------//
-// © Copyright Fredrik Eriksson. 
+// © Copyright Fredrik Eriksson.
 
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
@@ -29,8 +29,8 @@ namespace spec
                 typedef ContextT                                            cotext_type;
 
                 typedef typename std::map<identifier_type, cotext_type*>         value_type;
-                    
-                context_impl() 
+
+                context_impl()
                 {
                 }
 

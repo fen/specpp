@@ -1,5 +1,5 @@
 // Spec++ exceptions.hpp  ----------------------------------------------------//
-// © Copyright Fredrik Eriksson. 
+// © Copyright Fredrik Eriksson.
 
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
