@@ -90,10 +90,10 @@
 				<F N="../../thebc/spec++/context_handler.hpp"/>
 				<F N="../../thebc/spec++/context_registration.hpp"/>
 				<F N="../../thebc/spec++/exceptions.hpp"/>
+				<F N="../../thebc/spec++/expectation.hpp"/>
 				<F N="../../thebc/spec++/result.hpp"/>
 				<F N="../../thebc/spec++/runnable_contexts.hpp"/>
 				<F N="../../thebc/spec++/runner.hpp"/>
-				<F N="../../thebc/spec++/tools.hpp"/>
 			</Folder>
 			<F N="../../thebc/spec++.hpp"/>
 		</Folder>

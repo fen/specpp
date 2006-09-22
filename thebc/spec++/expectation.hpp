@@ -1,4 +1,4 @@
-// Spec++ tools.hpp  ---------------------------------------------------------//
+// Spec++ expectation.hpp  ---------------------------------------------------//
 // © Copyright Fredrik Eriksson.
 
 // Distributed under the Boost Software License, Version 1.0. (See
@@ -9,8 +9,8 @@
 
 /*************************************************************************************************/
 
-#ifndef TOOLS_HPP
-#define TOOLS_HPP
+#ifndef EXPECTATION_HPP
+#define EXPECTATION_HPP
 
 namespace spec
 {
@@ -216,4 +216,4 @@ namespace spec
     };
 } // namespace spec
 
-#endif // TOOLS_HPP
+#endif // EXPECTATION_HPP

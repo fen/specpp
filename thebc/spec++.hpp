@@ -13,7 +13,7 @@
 #include <thebc/spec++/result.hpp>
 #include <thebc/spec++/exceptions.hpp>
 #include <thebc/spec++/runner.hpp>
-#include <thebc/spec++/tools.hpp>
+#include <thebc/spec++/expectation.hpp>
 
 
 #endif // SPECPP_HPP
