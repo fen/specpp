@@ -1,5 +1,5 @@
 // Spec++ runnable_contexts.hpp  ---------------------------------------------//
-// © Copyright Fredrik Eriksson.
+// © Copyright Fredrik Eriksson. 
 
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
@@ -125,8 +125,8 @@ namespace spec
     template<typename T>
     void runnable_contexts<T>::run(iterator const& iter)
     {
-        for(unsigned int i = 1;
-             i <= number_of_specifyers(iter);
+        for(unsigned int i = 1; 
+             i <= number_of_specifyers(iter); 
              ++i)
         {
             run(iter, i);
@@ -163,7 +163,7 @@ namespace spec
         {
            return run(iter,specifyer);
         }
-        return false;
+		return false;
     }
 
 /*************************************************************************************************/
