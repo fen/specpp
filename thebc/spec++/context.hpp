@@ -1,6 +1,7 @@
 #ifndef CONTEXT_HPP
 #define CONTEXT_HPP
 
+/* REVISIT (fred) : register_info should not be here should move it out to contex_handler*/
 #define context( TEXT, FIXTURE ) \
     namespace FIXTURE##_namespace{\
         template<typename FIXTURE>\
