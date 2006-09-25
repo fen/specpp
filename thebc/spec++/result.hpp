@@ -82,8 +82,7 @@ namespace spec
             /*!
                 \brief first in map is the description
             */
-            typedef std::map<std::string, std::vector<specify_result> >   context_result;
-            typedef std::vector<context_result>             result;
+            typedef std::map<std::string, std::vector<specify_result> >   result;
 
         }
     }
