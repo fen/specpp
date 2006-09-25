@@ -21,14 +21,15 @@ namespace spec
         typedef ActualT     actual_type;
         typedef ExpectedT   expected_type;
 
-        expectation_notmet(actual_type const& actual, expected_type const& expected)
-        : actual_m(actual), expected_m(expected){}
+        expectation_notmet(actual_type const& actual, expected_type const& expected,
+                           std::string const& message)
+        : actual_m(actual), expected_m(expected), message_m(message){}
 
         ~expectation_notmet() throw(){}
 
         char const* what() const throw()
         {
-            return "ello";
+            return message_m.c_str();
         }
 
         actual_type const& get_actual()
@@ -44,6 +45,7 @@ namespace spec
     private:
         actual_type actual_m;
         expected_type expected_m;
+        std::string message_m;
 
     };
 } // namespace spec

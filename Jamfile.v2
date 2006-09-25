@@ -3,17 +3,17 @@ import set ;
 
 project top
  :  requirements
-    <include>thebc/
+    <include>.
     <toolset>msvc:<define>_SCL_SECURE_NO_DEPRECATE
     <toolset>gcc,<variant>debug:<cxxflags>"-Werror -Wall"
     <toolset>gcc,<variant>profile:<cxxflags>"-pg"
   : default-build
     <link>static
     <threading>multi
-  : build-dir 
+  : build-dir
      $(BUILD_DIR)
   ;
 
 
-alias timer		: libs/timer/build ;
+alias spec++             : libs/spec++/examples ;
 

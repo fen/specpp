@@ -41,8 +41,9 @@ namespace spec
                 {
                     if(actual_m != expected)
                     {
-                        throw 1;
+                        throw expectation_notmet<T, T1>(actual_m, expected, "actual did not equal expected");
                     }
+                    return true;
                 }
 
                 template<typename T1>
@@ -52,6 +53,7 @@ namespace spec
                     {
                         throw 1;
                     }
+                    return true;
                 }
 
                 template<typename T1>
@@ -210,9 +212,9 @@ namespace spec
         spec_t(T const& actual)
         : actual_m(actual), should(actual_m), must(actual_m){}
 
+        T actual_m;
         detail::impl::should<T> should;
         detail::impl::should<T> must;
-        T actual_m;
     };
 } // namespace spec
 

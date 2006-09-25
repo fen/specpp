@@ -2,6 +2,7 @@
 #define SPECPP_HPP
 
 #include <map>
+#include <vector>
 #include <string>
 #include <iostream> /* REVISIT (fred) : Remove this it is for debug only.*/
 

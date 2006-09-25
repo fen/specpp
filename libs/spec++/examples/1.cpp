@@ -48,26 +48,40 @@ context("Example of Spec++", test_data)
     {
         value( 10 ).should.be_between(5)and(20);
     }
+}
 
-    specify("example9 10 should be between or equal to 10 and 20.", 9)
+struct more_examples
+{
+};
+
+context("Spec++ more examples", more_examples)
+{
+    specify("example1 10 should be between or equal to 10 and 20.", 1)
     {
         value( 10 ).should.be_between_or_equal_to(10)and(20);
     }
 
-    specify("example10 10.5 shoudl be within 0.5f of 11.0f.", 10)
+    specify("example2 10.5 shoudl be within 0.5f of 11.0f.", 2)
     {
         value( 10.5f ).should.be_within( 0.5f ).of( 11.0f );
     }
+
+    specify("example3 11 should equal 10.", 3)
+    {
+        // Faile
+        value( 11 ).should.equal(10);
+    }
+
 }
 
 int main(int argc, char* argv[])
 {
     spec::runner r(argc, argv);
-    r.run();
+    spec::runner::result res = r.run();
+
+    //spec::output<compiler_format> out(res);
+
+    //out.display();
 
     spec::context_registration::destroy();
-
-    //spec::runner::result = r.run();
-
-    //spec::output<compiler_format>(result);
 }

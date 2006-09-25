@@ -29,7 +29,6 @@ namespace spec
     public:
         typedef ContextT                                        context;
 
-        /* REVISIT (fred) : boost::function should be used this is not readable */
         typedef void (context::*specifyer_pointer)();           //specifyer_pointer
 
         typedef std::map<identifier_type, specifyer_pointer>    value_type;
@@ -41,25 +40,13 @@ namespace spec
 
         bool run(identifier_type const& identifier);
 
-        std::string const& context_description()
-        {
-            return context_description_m;
-        }
+        std::string const& context_description();
 
-        std::string const& specify_description(identifier_type const& identifier)
-        {
-            return context_m.specify_text[identifier];
-        }
+        std::string const& specify_description(identifier_type const& identifier);
 
-        std::string& specify_file(identifier_type const& identifier)
-        {
-            return context_m.specify_file[identifier];
-        }
+        std::string& specify_file(identifier_type const& identifier);
 
-        int specify_line(identifier_type const& identifier)
-        {
-            return context_m.specify_line[identifier];
-        }
+        int specify_line(identifier_type const& identifier);
 
     private:
         void register_specifyer(identifier_type const& identifier,
@@ -163,6 +150,38 @@ namespace spec
         }
 
         return return_value;
+    }
+
+/*************************************************************************************************/
+
+    template<typename ContextT, int MaxSpecifyers>
+    std::string const& context_handler<ContextT, MaxSpecifyers>::context_description()
+    {
+        return context_description_m;
+    }
+
+/*************************************************************************************************/
+
+    template<typename ContextT, int MaxSpecifyers>
+    std::string const& context_handler<ContextT, MaxSpecifyers>::specify_description(identifier_type const& identifier)
+    {
+        return context_m.specify_text[identifier];
+    }
+
+/*************************************************************************************************/
+
+    template<typename ContextT, int MaxSpecifyers>
+    std::string& context_handler<ContextT, MaxSpecifyers>::specify_file(identifier_type const& identifier)
+    {
+        return context_m.specify_file[identifier];
+    }
+
+/*************************************************************************************************/
+
+    template<typename ContextT, int MaxSpecifyers>
+    int context_handler<ContextT, MaxSpecifyers>::specify_line(identifier_type const& identifier)
+    {
+        return context_m.specify_line[identifier];
     }
 
 /*************************************************************************************************/

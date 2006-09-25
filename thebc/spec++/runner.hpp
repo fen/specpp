@@ -21,6 +21,8 @@ namespace spec
     {
     public:
         typedef detail::impl::result                        result;
+        typedef detail::impl::specify_result                specify_result;
+        typedef detail::impl::context_result                context_result;
         typedef runnable_contexts<context_registration>     runnable_type;
 
         runner(int argc, char** argv);
@@ -28,6 +30,7 @@ namespace spec
         result& run();
 
     private:
+        result result_m;
     };
 
 /*************************************************************************************************/
@@ -45,31 +48,48 @@ namespace spec
         // Get all contexts that are runnable
         runnable_type runnable;
         runnable_type::iterator iter = runnable.begin();
+
+
         for( runnable_type::iterator end = runnable.end();
-             iter != end; ++iter)
+             iter != end;
+             ++iter)
         {
-            std::cout << runnable.context_description(iter) << std::endl;
-            for(int i = 1;
+            context_result context_res;
+            std::string context = runnable.context_description(iter);
+            context_res[context] = std::vector<specify_result>();
+            result_m.push_back(context_res);
+
+            for(runnable_type::size_type i = 1;
                 i < runnable.number_of_specifyers(iter); ++i)
             {
                 try
                 {
                     if(runnable.run(iter, i))
                     {
-                        // log the result as AS_SPECIFYED
-                        std::cout << runnable.specify_description(iter,i) << '\n'
-                                  << runnable.specify_file(iter, i) << '\n'
-                                  << runnable.specify_line(iter, i) << '\n'
-                                  << std::endl;
+                        context_res[context].push_back( specify_result(runnable.specify_description(iter, i)
+                                                         ,true
+                                                         ,""
+                                                         ,runnable.specify_file(iter, i)
+                                                         ,runnable.specify_line(iter, i)) );
                     }
+                }
+                catch( std::exception const& ex )
+                {
+                    context_res[context].push_back( specify_result(runnable.specify_description(iter, i)
+                                                     ,false
+                                                     ,ex.what()
+                                                     ,runnable.specify_file(iter, i)
+                                                     ,runnable.specify_line(iter, i)) );
                 }
                 catch(...)
                 {
-                    std::cout << "Handling exception" << std::endl;
+                    // the rest of the exceptions
                 }
             }
+
         }
-        std::cout << "end" << std::endl;
+
+        return result_m;
     }
 
 /*************************************************************************************************/

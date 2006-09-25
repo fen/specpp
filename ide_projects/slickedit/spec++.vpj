@@ -2,7 +2,7 @@
 <Project
 	Version="10.0"
 	VendorName="SlickEdit"
-	WorkingDir="."
+	WorkingDir="../../"
 	VCSProject="Subversion:">
 	<Config
 		Name="Release"
@@ -23,7 +23,7 @@
 				CaptureOutputWith="ProcessBuffer"
 				SaveOption="SaveWorkspaceFiles"
 				RunFromDir="%rw">
-				<Exec/>
+				<Exec CmdLine="bjam"/>
 			</Target>
 			<Target
 				Name="Rebuild"
@@ -48,6 +48,9 @@
 				<Exec CmdLine='"spec++.exe"'/>
 			</Target>
 		</Menu>
+		<PostBuildCommands>
+			<Exec CmdLine="bin/libs/spec++/examples/gcc-4.1/debug/link-static/threading-multi/example1"/>
+		</PostBuildCommands>
 	</Config>
 	<CustomFolders>
 		<Folder
@@ -75,8 +78,12 @@
 		</Folder>
 		<Folder Name="../../libs">
 			<Folder Name="spec++">
+				<Folder Name="build">
+					<F N="../../libs/spec++/build/Jamfile.v2"/>
+				</Folder>
 				<Folder Name="examples">
 					<F N="../../libs/spec++/examples/1.cpp"/>
+					<F N="../../libs/spec++/examples/Jamfile.v2"/>
 				</Folder>
 			</Folder>
 		</Folder>
