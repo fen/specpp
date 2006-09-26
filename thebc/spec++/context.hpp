@@ -26,6 +26,8 @@
     }\
     namespace FIXTURE##_namespace
 
+#define CONTEXT context
+
 /* REVISIT (fred) : The registration of TEXT __LINE__ __FILE__ has to be done better.*/
 /* REVISIT (fred) : It would be nice if IDENTIFIER could be removed and have sort of auto incremented macros or template */
 #define specify( TEXT, IDENTIFIER ) \
@@ -41,5 +43,7 @@
     template<>\
     void data::context::specify_func<IDENTIFIER>()\
 
+
+#define SPECIFY specify
 
 #endif // CONTEXT_HPP

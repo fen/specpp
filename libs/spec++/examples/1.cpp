@@ -47,7 +47,7 @@ context("Example of Spec++", test_data)
 
     specify("example8 10 should be between 5 and 20.", 8)
     {
-        value( 10 ).should.be_between(5)and(20);
+        value( 10 ).should.be_between(5)&&(20);
     }
 }
 
@@ -59,7 +59,7 @@ context("Spec++ more examples", more_examples)
 {
     specify("example1 10 should be between or equal to 10 and 20.", 1)
     {
-        value( 10 ).should.be_between_or_equal_to(10)and(20);
+        value( 10 ).should.be_between_or_equal_to(10)&&(20);
     }
 
     specify("example2 10.5 shoudl be within 0.5f of 11.0f.", 2)

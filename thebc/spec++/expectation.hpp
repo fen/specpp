@@ -147,6 +147,12 @@ namespace spec
                     throw 1;
                 }
 
+                /*!
+                NOTE (fred) : The operator && (and) was added to make it
+                              possible to have this syntax: actual.should.be_between(lower_bound) and(upper_bound)
+                              , or actual.should.be_between(lower_bound) && (upper_bound).
+                              The problem is that VC++ 7.1 don't treated and as an keyword so && is only supported.
+                */
                 template<typename T1>
                 bool operator&&(T1 const& upper_bound)
                 {
