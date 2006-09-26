@@ -51,10 +51,23 @@ namespace spec
                 {
                     if(actual_m == expected)
                     {
-                        throw 1;
+                        throw expectation_notmet<T, T1>(actual_m, expected, "actual did equal expected");
                     }
                     return true;
                 }
+
+                template<typename T1>
+                bool operator==(T1 const& expected) const
+                {
+                    return equal<T1>(expected);
+                }
+
+                template<typename T1>
+                bool operator!=(T1 const& expected) const
+                {
+                    return not_equal<T1>(expected);
+                }
+
 
                 template<typename T1>
                 bool be_more_than(T1 const& lower_bound) const
@@ -67,6 +80,12 @@ namespace spec
                 }
 
                 template<typename T1>
+                bool operator>(T1 const& lower_bound) const
+                {
+                    return be_more_than<T1>(lower_bound);
+                }
+
+                template<typename T1>
                 bool be_less_than(T1 const& upper_bound) const
                 {
                     if(actual_m < upper_bound)
@@ -74,6 +93,12 @@ namespace spec
                         return true;
                     }
                     throw 1;
+                }
+
+                template<typename T1>
+                bool operator<(T1 const& upper_bound) const
+                {
+                    return be_less_than<T1>(upper_bound);
                 }
 
                 template<typename T1>
@@ -101,8 +126,6 @@ namespace spec
                 {
                     return within<T1>(actual_m, tolerance);
                 }
-
-
 
                 T& actual_m;
             };
@@ -202,7 +225,6 @@ namespace spec
 
     void violated(std::string const& message)
     {
-        // throw some thing...
         throw 1;
     }
 

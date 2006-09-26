@@ -73,6 +73,26 @@ context("Spec++ more examples", more_examples)
         value( 11 ).should.equal(10);
     }
 
+    specify("example 4 11 should == 11", 4)
+    {
+        value( 11 ).should == 11;
+    }
+
+    specify("example5 11 should != 10", 5)
+    {
+        value( 11 ).should != 10;
+    }
+
+    specify("example6 10 should be > than 5", 6)
+    {
+        value( 10 ).should > 5;
+    }
+
+    specify("example7 10 should be < than 20", 7)
+    {
+        value( 10 ).should < 20;
+    }
+
 }
 
 int main(int argc, char* argv[])
