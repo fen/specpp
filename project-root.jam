@@ -2,5 +2,6 @@ path-constant TOP : . ;
 path-constant BUILD_DIR : ./bin ;
 
 use-project /thebc/spec++ : libs/spec++/examples/ ;
+use-project /thebc/spec++-stack : libs/spec++/examples/stack ;
 
 

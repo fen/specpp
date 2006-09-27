@@ -127,6 +127,28 @@ namespace spec
                     return within<T1>(actual_m, tolerance);
                 }
 
+                template<typename T1>
+                bool be(T1 const& expected)
+                {
+                    if(actual_m == expected)
+                    {
+                        return true;
+                    }
+                    throw expectation_notmet<T, T1>(actual_m, expected, "actual was not equal to expected");
+                }
+
+                template<typename T1>
+                bool not_be(T1 const& expected)
+                {
+                    if(actual_m != expected)
+                    {
+                        return true;
+                    }
+                    throw expectation_notmet<T, T1>(actual_m, expected, "actual was equal to expected");
+                }
+
+
+
                 T& actual_m;
             };
 

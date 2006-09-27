@@ -23,6 +23,9 @@ namespace spec
 
 /*************************************************************************************************/
 
+   /*!
+
+   */
     template<typename ContextT, int MaxSpecifyers = MAXSPECIFYERS>
     class context_handler : public base_context_handler
     {
@@ -82,17 +85,17 @@ namespace spec
 /*************************************************************************************************/
 
     /*!
-        Default constructor that registrate a test suite with a unique \c name.
-        \param name name of the test suite this name is used to identifie this test suite and
-                    there fore has to be unique.
+        Default constructor that registrate a context with a unique \c name.
+        \param name Name of the context this name is used to identifie this context and
+               there fore has to be unique.
     */
     template<typename ContextT, int MaxSpecifyers>
-    context_handler<ContextT, MaxSpecifyers>::context_handler(std::string const& description)
-    : context_description_m(description)
+    context_handler<ContextT, MaxSpecifyers>::context_handler(std::string const& name)
+    : context_description_m(name)
     {
         context_registration::pointer ptr;
         ptr->register_context(context_description_m, this);
-        // do a regursive register of all the test cases for this test suite
+        // do a regursive register of all the specifyers  for this context
         recursive<MaxSpecifyers>::recurv(*this);
 
     }
@@ -106,6 +109,9 @@ namespace spec
 
 /*************************************************************************************************/
 
+    /*!
+        \brief
+    */
     template<typename ContextT, int MaxSpecifyers>
     std::size_t context_handler<ContextT, MaxSpecifyers>::size()
     {

@@ -16,5 +16,6 @@ project top
   ;
 
 
-alias spec++             : libs/spec++/examples ;
+alias spec++            : libs/spec++/examples ;
+alias spec++-stack      : libs/spec++/examples/stack ;
 

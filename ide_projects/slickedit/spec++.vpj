@@ -50,6 +50,7 @@
 		</Menu>
 		<PostBuildCommands>
 			<Exec CmdLine="bin/libs/spec++/examples/gcc-4.1/debug/link-static/threading-multi/example1"/>
+			<Exec CmdLine="bin/libs/spec++/examples/stack/gcc-4.1/debug/link-static/threading-multi/stack_example"/>
 		</PostBuildCommands>
 	</Config>
 	<CustomFolders>
@@ -82,6 +83,12 @@
 					<F N="../../libs/spec++/build/Jamfile.v2"/>
 				</Folder>
 				<Folder Name="examples">
+					<Folder Name="stack">
+						<F N="../../libs/spec++/examples/stack/Jamfile.v2"/>
+						<F N="../../libs/spec++/examples/stack/main.cpp"/>
+						<F N="../../libs/spec++/examples/stack/stack.hpp"/>
+						<F N="../../libs/spec++/examples/stack/stack_spec.hpp"/>
+					</Folder>
 					<F N="../../libs/spec++/examples/1.cpp"/>
 					<F N="../../libs/spec++/examples/Jamfile.v2"/>
 				</Folder>
