@@ -2,7 +2,7 @@
 <Project
 	Version="10.0"
 	VendorName="SlickEdit"
-	WorkingDir="."
+	WorkingDir="../../"
 	VCSProject="Subversion:">
 	<Config
 		Name="Release"
@@ -23,7 +23,7 @@
 				CaptureOutputWith="ProcessBuffer"
 				SaveOption="SaveWorkspaceFiles"
 				RunFromDir="%rw">
-				<Exec/>
+				<Exec CmdLine="bjam"/>
 			</Target>
 			<Target
 				Name="Rebuild"
@@ -48,6 +48,10 @@
 				<Exec CmdLine='"spec++.exe"'/>
 			</Target>
 		</Menu>
+		<PostBuildCommands>
+			<Exec CmdLine="bin/libs/spec++/examples/gcc-4.1/debug/link-static/threading-multi/example1"/>
+			<Exec CmdLine="bin/libs/spec++/examples/stack/gcc-4.1/debug/link-static/threading-multi/stack_example"/>
+		</PostBuildCommands>
 	</Config>
 	<CustomFolders>
 		<Folder
@@ -75,8 +79,18 @@
 		</Folder>
 		<Folder Name="../../libs">
 			<Folder Name="spec++">
+				<Folder Name="build">
+					<F N="../../libs/spec++/build/Jamfile.v2"/>
+				</Folder>
 				<Folder Name="examples">
+					<Folder Name="stack">
+						<F N="../../libs/spec++/examples/stack/Jamfile.v2"/>
+						<F N="../../libs/spec++/examples/stack/main.cpp"/>
+						<F N="../../libs/spec++/examples/stack/stack.hpp"/>
+						<F N="../../libs/spec++/examples/stack/stack_spec.hpp"/>
+					</Folder>
 					<F N="../../libs/spec++/examples/1.cpp"/>
+					<F N="../../libs/spec++/examples/Jamfile.v2"/>
 				</Folder>
 			</Folder>
 		</Folder>
@@ -85,12 +99,16 @@
 				<Folder Name="detail">
 					<F N="../../thebc/spec++/detail/singleton.hpp"/>
 				</Folder>
+				<Folder Name="format">
+					<F N="../../thebc/spec++/format/compiler_format.hpp"/>
+				</Folder>
 				<F N="../../thebc/spec++/base_context_handler.hpp"/>
 				<F N="../../thebc/spec++/context.hpp"/>
 				<F N="../../thebc/spec++/context_handler.hpp"/>
 				<F N="../../thebc/spec++/context_registration.hpp"/>
 				<F N="../../thebc/spec++/exceptions.hpp"/>
 				<F N="../../thebc/spec++/expectation.hpp"/>
+				<F N="../../thebc/spec++/output.hpp"/>
 				<F N="../../thebc/spec++/result.hpp"/>
 				<F N="../../thebc/spec++/runnable_contexts.hpp"/>
 				<F N="../../thebc/spec++/runner.hpp"/>
