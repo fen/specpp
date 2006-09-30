@@ -1,3 +1,7 @@
+// This stack is for the purpose of showing stack++
+// it is totally useless and should not be used for any thing other
+// than this :)
+
 #include <cassert>
 
 #ifndef STACK_HPP
@@ -16,6 +20,7 @@ public:
     value_type top();
     value_type pop();
     bool empty();
+    bool full();
 
 private:
     value_type      array_m[STACK_CAPACITY];
@@ -55,6 +60,12 @@ bool stack<T>::empty()
         return true;
     else
         return false;
+}
+
+template<typename T>
+bool stack<T>::full()
+{
+    return top_m == 127 ? true:false;
 }
 
 #endif // STACK_HPP

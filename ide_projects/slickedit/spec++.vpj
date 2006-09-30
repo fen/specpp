@@ -90,6 +90,7 @@
 						<F N="../../libs/spec++/examples/stack/stack_spec.hpp"/>
 					</Folder>
 					<F N="../../libs/spec++/examples/1.cpp"/>
+					<F N="../../libs/spec++/examples/2.cpp"/>
 					<F N="../../libs/spec++/examples/Jamfile.v2"/>
 				</Folder>
 			</Folder>
@@ -103,8 +104,11 @@
 					<F N="../../thebc/spec++/format/compiler_format.hpp"/>
 				</Folder>
 				<F N="../../thebc/spec++/base_context_handler.hpp"/>
+				<F N="../../thebc/spec++/base_context_observer.hpp"/>
+				<F N="../../thebc/spec++/base_specify.hpp"/>
 				<F N="../../thebc/spec++/context.hpp"/>
 				<F N="../../thebc/spec++/context_handler.hpp"/>
+				<F N="../../thebc/spec++/context_observer.hpp"/>
 				<F N="../../thebc/spec++/context_registration.hpp"/>
 				<F N="../../thebc/spec++/exceptions.hpp"/>
 				<F N="../../thebc/spec++/expectation.hpp"/>
@@ -112,6 +116,7 @@
 				<F N="../../thebc/spec++/result.hpp"/>
 				<F N="../../thebc/spec++/runnable_contexts.hpp"/>
 				<F N="../../thebc/spec++/runner.hpp"/>
+				<F N="../../thebc/spec++/specify.hpp"/>
 			</Folder>
 			<F N="../../thebc/spec++.hpp"/>
 		</Folder>

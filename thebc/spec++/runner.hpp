@@ -22,7 +22,10 @@ namespace spec
     public:
         typedef detail::impl::result                        result;
         typedef detail::impl::specify_result                specify_result;
-        typedef runnable_contexts<context_registration>     runnable_type;
+        typedef detail::impl::context_result                context_result;
+        typedef std::vector<specify_result>                 specify_container;
+
+        typedef runnable_contexts<context_handler>          runnable_type;
 
         runner(int argc, char** argv);
 
@@ -44,48 +47,42 @@ namespace spec
 
     runner::result& runner::run()
     {
-        // Get all contexts that are runnable
-        runnable_type runnable;
-        runnable_type::iterator iter = runnable.begin();
+        runnable_type run;
 
+        // clear the old results
         result_m.clear();
 
-
-        for( runnable_type::iterator end = runnable.end();
-             iter != end;
-             ++iter)
+        foreach(spec::base_context_observer* c, run)
         {
-            std::string context = runnable.context_description(iter);
-            result_m[context] = std::vector<specify_result>();
-
-            for(runnable_type::size_type i = 1;
-                i < runnable.number_of_specifyers(iter); ++i)
+            result_m.push_back(std::make_pair(c->name, specify_container()));
+            foreach(spec::base_specify* s, c->specifyers_m)
             {
+                std::string message;
+                bool expected_result = true;
+
                 try
                 {
-                    if(runnable.run(iter, i))
-                    {
-                        result_m[context].push_back( specify_result(runnable.specify_description(iter, i)
-                                                        ,true
-                                                        ,""
-                                                        ,runnable.specify_file(iter, i)
-                                                        ,runnable.specify_line(iter, i)) );
-                    }
+                    s->specify_method();
                 }
-                catch( std::exception const& ex )
+                catch(expectation_notmet const& ex)
                 {
-                    result_m[context].push_back( specify_result(runnable.specify_description(iter, i)
-                                                    ,false
-                                                    ,ex.what()
-                                                    ,runnable.specify_file(iter, i)
-                                                    ,runnable.specify_line(iter, i)) );
+                    message = ex.what();
+                    expected_result = false;
                 }
                 catch(...)
                 {
-                    // the rest of the exceptions
+                    message = "unknown exception thrown.";
+                    expected_result = false;
                 }
-            }
 
+                // create the result
+                result_m.back().second.push_back(specify_result(s->name,
+                                                       expected_result,
+                                                       message,
+                                                       s->file,
+                                                       s->line));
+
+            }
         }
 
         return result_m;

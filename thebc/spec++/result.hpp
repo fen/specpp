@@ -24,6 +24,7 @@ namespace spec
             class specify_result
             {
             public:
+                /* REVISIT (fred) : specify_desc should be name.*/
                 specify_result(std::string const& specify_desc,
                               bool expectation_met,
                               std::string message,
@@ -82,7 +83,8 @@ namespace spec
             /*!
                 \brief first in map is the description
             */
-            typedef std::map<std::string, std::vector<specify_result> >   result;
+            typedef std::pair<std::string, std::vector<specify_result> > context_result;
+            typedef std::vector<context_result> result;
 
         }
     }

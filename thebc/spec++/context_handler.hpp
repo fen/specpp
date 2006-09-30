@@ -21,198 +21,31 @@
 namespace spec
 {
 
-/*************************************************************************************************/
-
-   /*!
-
-   */
-    template<typename ContextT, int MaxSpecifyers = MAXSPECIFYERS>
-    class context_handler : public base_context_handler
+    namespace detail
     {
-    public:
-        typedef ContextT                                        context;
-
-        typedef void (context::*specifyer_pointer)();           //specifyer_pointer
-
-        typedef std::map<identifier_type, specifyer_pointer>    value_type;
-
-        context_handler(std::string const& text);
-        ~context_handler();
-
-        std::size_t size();
-
-        bool run(identifier_type const& identifier);
-
-        std::string const& context_description();
-
-        std::string const& specify_description(identifier_type const& identifier);
-
-        std::string& specify_file(identifier_type const& identifier);
-
-        int specify_line(identifier_type const& identifier);
-
-    private:
-        void register_specifyer(identifier_type const& identifier,
-                                specifyer_pointer ptr);
-        void register_specifyer_information(identifier_type const& identifier,
-                                            specifyer_pointer ptr);
-
-        template<int N, typename T=void>
-        class recursive
+        namespace impl
         {
-        public:
-            static void recurv(context_handler& con)
+            class context_handler
             {
-                con.register_specifyer(N, &context::template specify_func<N>);
-                con.register_specifyer_information(N, &context::template register_info<N>);
-                recursive<N-1>::recurv(con);
-            }
-        };
+            public:
+                typedef std::vector<base_context_observer*>     value_type;
+                void register_context(base_context_observer* observer)
+                {
+                    registered_observers_m.push_back(observer);
+                }
 
-        template<typename T>
-        class recursive<0, T>
-        {
-        public:
-            static void recurv(context_handler& con){}
-        };
+                value_type const& get_contexts()
+                {
+                    return registered_observers_m;
+                }
 
-        value_type reged_context_storage_m;
-        value_type reged_info_storage_m;
-        context context_m;
-        std::string context_description_m;
-    };
-
-/*************************************************************************************************/
-
-    /*!
-        Default constructor that registrate a context with a unique \c name.
-        \param name Name of the context this name is used to identifie this context and
-               there fore has to be unique.
-    */
-    template<typename ContextT, int MaxSpecifyers>
-    context_handler<ContextT, MaxSpecifyers>::context_handler(std::string const& name)
-    : context_description_m(name)
-    {
-        context_registration::pointer ptr;
-        ptr->register_context(context_description_m, this);
-        // do a regursive register of all the specifyers  for this context
-        recursive<MaxSpecifyers>::recurv(*this);
-
-    }
-
-/*************************************************************************************************/
-
-    template<typename ContextT, int MaxSpecifyers>
-    context_handler<ContextT, MaxSpecifyers>::~context_handler()
-    {
-    }
-
-/*************************************************************************************************/
-
-    /*!
-        \brief
-    */
-    template<typename ContextT, int MaxSpecifyers>
-    std::size_t context_handler<ContextT, MaxSpecifyers>::size()
-    {
-        return reged_context_storage_m.size();
-    }
-
-/*************************************************************************************************/
-
-    /*!
-        Allows the client to run the test case with the unique \c identifier.
-
-        \param identifier tells the runner with test case to run.
-        \return true upon normal run and false if no test was executed.
-    */
-    template<typename ContextT, int MaxSpecifyers>
-    bool context_handler<ContextT, MaxSpecifyers>::run(identifier_type const& identifier)
-    {
-        typename value_type::iterator iter = reged_context_storage_m.find(identifier);
-        bool return_value = false;
-
-        if(iter != reged_context_storage_m.end())
-        {
-            (context_m.*((*reged_info_storage_m.find(identifier)).second))();
-            try
-            {
-                (context_m.*((*iter).second))();
-            }
-            catch(...)
-            {
-                context_m.dummy_m = false;
-                throw;
-            }
-            // execute the test case
-
-
-            if(!context_m.dummy_m)
-            {
-                return_value = true;
-            }
-
-            context_m.dummy_m = false;
+            private:
+                value_type registered_observers_m;
+            };
         }
-
-        return return_value;
     }
 
-/*************************************************************************************************/
-
-    template<typename ContextT, int MaxSpecifyers>
-    std::string const& context_handler<ContextT, MaxSpecifyers>::context_description()
-    {
-        return context_description_m;
-    }
-
-/*************************************************************************************************/
-
-    template<typename ContextT, int MaxSpecifyers>
-    std::string const& context_handler<ContextT, MaxSpecifyers>::specify_description(identifier_type const& identifier)
-    {
-        return context_m.specify_text[identifier];
-    }
-
-/*************************************************************************************************/
-
-    template<typename ContextT, int MaxSpecifyers>
-    std::string& context_handler<ContextT, MaxSpecifyers>::specify_file(identifier_type const& identifier)
-    {
-        return context_m.specify_file[identifier];
-    }
-
-/*************************************************************************************************/
-
-    template<typename ContextT, int MaxSpecifyers>
-    int context_handler<ContextT, MaxSpecifyers>::specify_line(identifier_type const& identifier)
-    {
-        return context_m.specify_line[identifier];
-    }
-
-/*************************************************************************************************/
-
-    /*!
-        Registrate a test case with a unique \c identifier and a pointer to the test case method.
-
-        \param identifier some type of unique identifier that will specify this test case.
-        \param testcase_ptr pointer to the test case method.
-    */
-    template<typename ContextT, int MaxSpecifyers>
-    void context_handler<ContextT, MaxSpecifyers>::register_specifyer(identifier_type const& identifier,
-                                                    specifyer_pointer ptr)
-    {
-       reged_context_storage_m[identifier] = ptr;
-    }
-
-/*************************************************************************************************/
-    template<typename ContextT, int MaxSpecifyers>
-    void context_handler<ContextT, MaxSpecifyers>::register_specifyer_information(identifier_type const& identifier,
-                                        specifyer_pointer ptr)
-    {
-        reged_info_storage_m[identifier] = ptr;
-    }
-
+    typedef detail::singleton<detail::impl::context_handler> context_handler;
 
 } // namespace spec
 

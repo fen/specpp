@@ -11,6 +11,6 @@ int main(int argc, char* argv[])
 
     out.display();
 
-    spec::context_registration::destroy();
+    spec::context_handler::destroy();
 }
 

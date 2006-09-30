@@ -41,7 +41,7 @@ namespace spec
                 {
                     if(actual_m != expected)
                     {
-                        throw expectation_notmet<T, T1>(actual_m, expected, "actual did not equal expected");
+                        throw expectation_notmet_impl<T, T1>(actual_m, expected, "actual did not equal expected");
                     }
                     return true;
                 }
@@ -51,7 +51,7 @@ namespace spec
                 {
                     if(actual_m == expected)
                     {
-                        throw expectation_notmet<T, T1>(actual_m, expected, "actual did equal expected");
+                        throw expectation_notmet_impl<T, T1>(actual_m, expected, "actual did equal expected");
                     }
                     return true;
                 }
@@ -134,7 +134,7 @@ namespace spec
                     {
                         return true;
                     }
-                    throw expectation_notmet<T, T1>(actual_m, expected, "actual was not equal to expected");
+                    throw expectation_notmet_impl<T, T1>(actual_m, expected, "actual was not equal to expected");
                 }
 
                 template<typename T1>
@@ -144,7 +144,7 @@ namespace spec
                     {
                         return true;
                     }
-                    throw expectation_notmet<T, T1>(actual_m, expected, "actual was equal to expected");
+                    throw expectation_notmet_impl<T, T1>(actual_m, expected, "actual was equal to expected");
                 }
 
 

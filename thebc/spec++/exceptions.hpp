@@ -14,37 +14,36 @@
 
 namespace spec
 {
-    template<typename ActualT, typename ExpectedT>
     class expectation_notmet : public std::exception
+    {
+    public:
+        virtual ~expectation_notmet() throw() {}
+
+        virtual char const* what() const throw() = 0;
+    };
+
+    template<typename ActualT, typename ExpectedT>
+    class expectation_notmet_impl : public expectation_notmet
     {
     public:
         typedef ActualT     actual_type;
         typedef ExpectedT   expected_type;
 
-        expectation_notmet(actual_type const& actual, expected_type const& expected,
+        expectation_notmet_impl(actual_type const& actual, expected_type const& expected,
                            std::string const& message)
-        : actual_m(actual), expected_m(expected), message_m(message){}
+        : message_m(message)
+        {
 
-        ~expectation_notmet() throw(){}
+        }
+
+        ~expectation_notmet_impl() throw(){}
 
         char const* what() const throw()
         {
             return message_m.c_str();
         }
 
-        actual_type const& get_actual()
-        {
-            return actual_m;
-        }
-
-        expected_type const& get_expected()
-        {
-            return expected_m;
-        }
-
     private:
-        actual_type actual_m;
-        expected_type expected_m;
         std::string message_m;
 
     };
