@@ -82,6 +82,10 @@
 				<Folder Name="build">
 					<F N="../../libs/spec++/build/Jamfile.v2"/>
 				</Folder>
+				<Folder Name="documentation">
+					<F N="../../libs/spec++/documentation/Jamfile.v2"/>
+					<F N="../../libs/spec++/documentation/spec++.qbk"/>
+				</Folder>
 				<Folder Name="examples">
 					<Folder Name="stack">
 						<F N="../../libs/spec++/examples/stack/Jamfile.v2"/>
@@ -112,6 +116,7 @@
 				<F N="../../thebc/spec++/context_registration.hpp"/>
 				<F N="../../thebc/spec++/exceptions.hpp"/>
 				<F N="../../thebc/spec++/expectation.hpp"/>
+				<F N="../../thebc/spec++/options.hpp"/>
 				<F N="../../thebc/spec++/output.hpp"/>
 				<F N="../../thebc/spec++/result.hpp"/>
 				<F N="../../thebc/spec++/runnable_contexts.hpp"/>

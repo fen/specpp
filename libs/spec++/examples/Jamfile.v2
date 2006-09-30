@@ -1,5 +1,11 @@
 project
-        : requirements <include>.
+        : requirements
+        <include>.
         <define>BOOST_ALL_NO_LIB
         ;
-exe example1 : 1.cpp ;
+exe example1
+        :
+        1.cpp
+        /boost/program_options
+        ;
+

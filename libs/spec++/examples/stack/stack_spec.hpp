@@ -3,36 +3,45 @@
 
 using namespace spec;
 
-struct general_stack
+template<int N>
+struct stack_helper
 {
     stack<int> stack;
-    general_stack(){stack.push(1),stack.push(2),stack.push(3),stack.push(4);}
+    stack_helper()
+    {
+        for(int i = 0; i < N; ++i)
+        {
+            stack.push(i);
+        }
+    }
 };
 
-context("A stack in general", general_stack)
+typedef stack_helper<STACK_CAPACITY> stack_helper_full;
+typedef stack_helper<STACK_CAPACITY-1> stack_helper_almost_full;
+typedef stack_helper<4> stack_helper_4;
+typedef stack_helper<0> stack_helper_0;
+typedef stack_helper<1> stack_helper_1;
+
+context("A stack in general", stack_helper_4)
 {
     specify("should add to the top when sent push")
     {
-        stack.push( 5 );
-        value( stack.top() ).should.equal( 5 );
+        stack.push( 4 );
+        value( stack.top() ).should.equal( 4 );
     }
     specify("should NOT remove the top item when sent top")
     {
-        value( stack.top() ).should.equal( 4 );
-        value( stack.top() ).should.equal( 4 );
+        value( stack.top() ).should.equal( 3 );
+        value( stack.top() ).should.equal( 3 );
     }
     specify("should return the top item when sent pop")
     {
-        value( stack.pop() ).should.equal( 4 );
+        value( stack.pop() ).should.equal( 3 );
     }
 }
 
-struct empty_stack
-{
-    stack<int> stack;
-};
 
-context("An empty stack", empty_stack)
+context("An empty stack", stack_helper_0)
 {
     specify("should be empty")
     {
@@ -53,13 +62,7 @@ context("An empty stack", empty_stack)
     }
 }
 
-struct almost_empty_stack
-{
-    stack<int> stack;
-    almost_empty_stack(){stack.push( 3 );}
-};
-
-context("An almost empty stack (with one item)", almost_empty_stack)
+context("An almost empty stack (with one item)", stack_helper_1)
 {
     specify("should not be empty")
     {
@@ -78,19 +81,7 @@ context("An almost empty stack (with one item)", almost_empty_stack)
     }
 }
 
-struct almost_full_stack
-{
-    stack<int> stack;
-    almost_full_stack()
-    {
-        for(int i = 0; i < STACK_CAPACITY-1; ++i)
-        {
-            stack.push(i);
-        }
-    }
-};
-
-context("An almost full stack (with one item less than capacity)", almost_full_stack)
+context("An almost full stack (with one item less than capacity)", stack_helper_almost_full)
 {
     specify("should not be full")
     {
@@ -104,20 +95,7 @@ context("An almost full stack (with one item less than capacity)", almost_full_s
     }
 }
 
-struct full_stack
-{
-    stack<int> stack;
-    full_stack()
-    {
-        for(int i = 0; i < STACK_CAPACITY; ++i)
-        {
-            stack.push(i);
-        }
-    }
-
-};
-
-context("A full stack", full_stack)
+context("A full stack", stack_helper_full)
 {
     specify("should be full")
     {
