@@ -14,9 +14,11 @@ namespace spec
         options(int argc, char* argv[]);
 
         bool run();
+        std::vector<std::string>& specs();
 
     private:
         bool run_m;
+        std::vector<std::string> specs_m;
 
     };
 
@@ -51,10 +53,7 @@ namespace spec
         }
         else if(vm.count("spec"))
         {
-            foreach(std::string s, vm["spec"].as< std::vector<std::string> >())
-            {
-                std::cout << s << '\n';
-            }
+            specs_m = vm["spec"].as< std::vector<std::string> >();
         }
 
     }
@@ -62,6 +61,11 @@ namespace spec
     bool options::run()
     {
         return run_m;
+    }
+
+    std::vector<std::string>& options::specs()
+    {
+        return specs_m;
     }
 }
 

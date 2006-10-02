@@ -27,17 +27,21 @@ namespace spec
 
         typedef runnable_contexts<context_handler>          runnable_type;
 
-        runner(int argc, char** argv);
+        runner(options& opt);
 
         result& run();
 
     private:
+        bool run_spec(std::string const& name);
+
         result result_m;
+        options& options_m;
     };
 
 /*************************************************************************************************/
 
-    runner::runner(int argc, char** argv)
+    runner::runner(options& opt)
+    : options_m(opt)
     {
     }
 
@@ -54,38 +58,61 @@ namespace spec
 
         foreach(spec::base_context_observer* c, run)
         {
-            result_m.push_back(std::make_pair(c->name, specify_container()));
-            foreach(spec::base_specify* s, c->specifyers_m)
+            if(run_spec(c->name))
             {
-                std::string message;
-                bool expected_result = true;
-
-                try
+                result_m.push_back(std::make_pair(c->name, specify_container()));
+                foreach(spec::base_specify* s, c->specifyers_m)
                 {
-                    s->specify_method();
-                }
-                catch(expectation_notmet const& ex)
-                {
-                    message = ex.what();
-                    expected_result = false;
-                }
-                catch(...)
-                {
-                    message = "unknown exception thrown.";
-                    expected_result = false;
-                }
+                    std::string message;
+                    bool expected_result = true;
 
-                // create the result
-                result_m.back().second.push_back(specify_result(s->name,
-                                                       expected_result,
-                                                       message,
-                                                       s->file,
-                                                       s->line));
+                    try
+                    {
+                        s->specify_method();
+                    }
+                    catch(expectation_notmet const& ex)
+                    {
+                        message = ex.what();
+                        expected_result = false;
+                    }
+                    catch(...)
+                    {
+                        message = "unknown exception thrown.";
+                        expected_result = false;
+                    }
 
+                    // create the result
+                    result_m.back().second.push_back(specify_result(s->name,
+                                                           expected_result,
+                                                           message,
+                                                           s->file,
+                                                           s->line));
+
+                }
             }
         }
 
         return result_m;
+    }
+
+/*************************************************************************************************/
+
+    bool runner::run_spec(std::string const& name)
+    {
+        if(options_m.specs().size() == 0)
+        {
+            return true;
+        }
+
+        foreach(std::string& spec_name, options_m.specs())
+        {
+            if(spec_name == name)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 /*************************************************************************************************/

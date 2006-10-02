@@ -4,13 +4,19 @@
 
 int main(int argc, char* argv[])
 {
-    spec::runner r(argc, argv);
-    spec::runner::result res = r.run();
+    // We first get the options for this spec
+    spec::options opt(argc, argv);
 
-    spec::output<compiler_format> out(res);
+    if(opt.run())
+    {
+        spec::runner r(opt);
 
-    out.display();
+        spec::runner::result res = r.run();
 
+        spec::output<compiler_format> out(res);
+
+        out.display();
+    }
     spec::context_handler::destroy();
 }
 

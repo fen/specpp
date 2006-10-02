@@ -97,7 +97,7 @@ int main(int argc, char* argv[])
 
     if(opt.run())
     {
-        spec::runner r(argc, argv);
+        spec::runner r(opt);
 
         spec::runner::result res = r.run();
 

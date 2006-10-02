@@ -21,7 +21,7 @@ public:
 
     void specifyer(std::ostream& out, spec::runner::specify_result& specify)
     {
-        out << specify.specify_description() << '\n';
+        out << '\t' << specify.specify_description() << '\n';
         if( !specify.expectation_met() )
         {
             // <path>:<line> error: <message>\n
