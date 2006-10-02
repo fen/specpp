@@ -13,9 +13,7 @@ int main(int argc, char* argv[])
 
         spec::runner::result res = r.run();
 
-        spec::output<compiler_format> out(res);
-
-        out.display();
+        spec::display(opt, res);
     }
     spec::context_handler::destroy();
 }

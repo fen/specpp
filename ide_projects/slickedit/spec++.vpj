@@ -114,6 +114,7 @@
 				<F N="../../thebc/spec++/context_handler.hpp"/>
 				<F N="../../thebc/spec++/context_observer.hpp"/>
 				<F N="../../thebc/spec++/context_registration.hpp"/>
+				<F N="../../thebc/spec++/display.hpp"/>
 				<F N="../../thebc/spec++/exceptions.hpp"/>
 				<F N="../../thebc/spec++/expectation.hpp"/>
 				<F N="../../thebc/spec++/options.hpp"/>

@@ -15,10 +15,12 @@ namespace spec
 
         bool run();
         std::vector<std::string>& specs();
+        std::string format();
 
     private:
         bool run_m;
         std::vector<std::string> specs_m;
+        std::string format_m;
 
     };
 
@@ -31,10 +33,13 @@ namespace spec
             ("version,v", "show version number")
             ("spec,s", po::value< std::vector<std::string> >(),
             "specify one or more specs you want to run")
+            ("format,f", po::value< std::vector<std::string> >(),
+            "the format of the output")
             ;
 
         po::positional_options_description p;
         p.add("spec", -1);
+        p.add("format", 1);
 
         po::variables_map vm;
         po::store(po::command_line_parser(argc, argv).
@@ -55,6 +60,10 @@ namespace spec
         {
             specs_m = vm["spec"].as< std::vector<std::string> >();
         }
+        else if(vm.count("format"))
+        {
+            format_m = vm["format"].as< std::vector<std::string> >()[0];
+        }
 
     }
 
@@ -66,6 +75,11 @@ namespace spec
     std::vector<std::string>& options::specs()
     {
         return specs_m;
+    }
+
+    std::string options::format()
+    {
+        return format_m;
     }
 }
 

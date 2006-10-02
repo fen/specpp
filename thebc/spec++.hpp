@@ -46,6 +46,7 @@
 #include <thebc/spec++/result.hpp>
 #include <thebc/spec++/runner.hpp>
 #include <thebc/spec++/output.hpp>
+#include <thebc/spec++/display.hpp>
 
 #include <thebc/spec++/expectation.hpp>
 
