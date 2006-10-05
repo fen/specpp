@@ -12,38 +12,48 @@
 #ifndef CONTEXT_HANDLER_HPP
 #define CONTEXT_HANDLER_HPP
 
-#ifndef MAXSPECIFYERS
-# define MAXSPECIFYERS 100
-#endif
-
 /*************************************************************************************************/
 
 namespace spec
 {
 
-    namespace detail
+    namespace detail{ namespace impl
     {
-        namespace impl
-        {
+
+/*************************************************************************************************/
+
             class context_handler
             {
             public:
                 typedef std::vector<base_context_observer*>     value_type;
-                void register_context(base_context_observer* observer)
-                {
-                    registered_observers_m.push_back(observer);
-                }
 
-                value_type const& get_contexts()
-                {
-                    return registered_observers_m;
-                }
+                void register_context(base_context_observer* observer);
+
+                value_type const& get_contexts();
 
             private:
                 value_type registered_observers_m;
             };
-        }
-    }
+
+/*************************************************************************************************/
+
+            void context_handler::register_context(base_context_observer* observer)
+            {
+                registered_observers_m.push_back(observer);
+            }
+
+/*************************************************************************************************/
+
+            context_handler::value_type const& context_handler::get_contexts()
+            {
+                return registered_observers_m;
+            }
+
+/*************************************************************************************************/
+
+    }} // namespace detail::impl
+
+
 
     typedef detail::singleton<detail::impl::context_handler> context_handler;
 

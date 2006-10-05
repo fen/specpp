@@ -36,6 +36,9 @@ namespace spec
                 explicit should(T& actual)
                 : actual_m(actual){}
 
+/*************************************************************************************************/
+                // Equality section
+
                 template<typename T1>
                 bool equal(T1 const& expected) const
                 {
@@ -68,6 +71,7 @@ namespace spec
                     return not_equal<T1>(expected);
                 }
 
+/*************************************************************************************************/
 
                 template<typename T1>
                 bool be_more_than(T1 const& lower_bound) const
@@ -101,6 +105,8 @@ namespace spec
                     return be_less_than<T1>(upper_bound);
                 }
 
+/*************************************************************************************************/
+
                 template<typename T1>
                 between<T1> be_between(T1 const& lower_bound) const
                 {
@@ -110,6 +116,18 @@ namespace spec
                     }
                     throw 1;
                 }
+
+                /* REVISIT (fred) : This does not work make between take a policy or something */
+                template<typename T1>
+                between<T1> not_be_between(T1 const& lower_bound) const
+                {
+                    if(actual_m > lower_bound)
+                    {
+                       return between<T1>(actual_m);
+                    }
+                    throw 1;
+                }
+
 
                 template<typename T1>
                 between_equal<T1> be_between_or_equal_to(T1 const& lower_bound) const
@@ -122,15 +140,30 @@ namespace spec
                 }
 
                 template<typename T1>
+                between_equal<T1> not_be_between_or_equal_to(T1 const& lower_bound) const
+                {
+                    if(actual_m >= lower_bound)
+                    {
+                        return between_equal<T1>(actual_m);
+                    }
+                    throw 1;
+                }
+
+/*************************************************************************************************/
+
+                template<typename T1>
                 within<T1> be_within(T1 const& tolerance) const
                 {
                     return within<T1>(actual_m, tolerance);
                 }
 
+/*************************************************************************************************/
+                // Identity
+
                 template<typename T1>
                 bool be(T1 const& expected)
                 {
-                    if(actual_m == expected)
+                    if(typeid(actual_m) == typeid(expected))
                     {
                         return true;
                     }
@@ -140,7 +173,7 @@ namespace spec
                 template<typename T1>
                 bool not_be(T1 const& expected)
                 {
-                    if(actual_m != expected)
+                    if(typeid(actual_m) != typeid(expected))
                     {
                         return true;
                     }

@@ -1,4 +1,4 @@
-project thebc/timer
+project thebc/spec++
     :
     source-location ../examples/
     ;

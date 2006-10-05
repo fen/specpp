@@ -17,6 +17,9 @@
 namespace spec
 {
 /*************************************************************************************************/
+    /*!
+        \brief Runns the spec that is specified with the options class.
+    */
     class runner
     {
     public:

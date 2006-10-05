@@ -82,21 +82,6 @@
 				<Folder Name="build">
 					<F N="../../libs/spec++/build/Jamfile.v2"/>
 				</Folder>
-				<Folder Name="documentation">
-					<F N="../../libs/spec++/documentation/Jamfile.v2"/>
-					<F N="../../libs/spec++/documentation/spec++.qbk"/>
-				</Folder>
-				<Folder Name="examples">
-					<Folder Name="stack">
-						<F N="../../libs/spec++/examples/stack/Jamfile.v2"/>
-						<F N="../../libs/spec++/examples/stack/main.cpp"/>
-						<F N="../../libs/spec++/examples/stack/stack.hpp"/>
-						<F N="../../libs/spec++/examples/stack/stack_spec.hpp"/>
-					</Folder>
-					<F N="../../libs/spec++/examples/1.cpp"/>
-					<F N="../../libs/spec++/examples/2.cpp"/>
-					<F N="../../libs/spec++/examples/Jamfile.v2"/>
-				</Folder>
 			</Folder>
 		</Folder>
 		<Folder Name="../../thebc">
@@ -107,12 +92,10 @@
 				<Folder Name="format">
 					<F N="../../thebc/spec++/format/compiler_format.hpp"/>
 				</Folder>
-				<F N="../../thebc/spec++/base_context_handler.hpp"/>
 				<F N="../../thebc/spec++/base_context_observer.hpp"/>
 				<F N="../../thebc/spec++/base_specify.hpp"/>
 				<F N="../../thebc/spec++/context.hpp"/>
 				<F N="../../thebc/spec++/context_handler.hpp"/>
-				<F N="../../thebc/spec++/context_observer.hpp"/>
 				<F N="../../thebc/spec++/context_registration.hpp"/>
 				<F N="../../thebc/spec++/display.hpp"/>
 				<F N="../../thebc/spec++/exceptions.hpp"/>

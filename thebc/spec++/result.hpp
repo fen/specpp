@@ -21,6 +21,9 @@ namespace spec
     {
         namespace impl
         {
+            /*!
+                \brief Unique specifyer result.
+            */
             class specify_result
             {
             public:
@@ -80,6 +83,7 @@ namespace spec
                 int             line_m;
 
             };
+
             /*!
                 \brief first in map is the description
             */

@@ -14,6 +14,7 @@ namespace spec
         :name(n)
         ,file(f)
         ,line(l) {}
+
         virtual ~base_specify(){}
 
         virtual void specify_method() = 0;

@@ -3,6 +3,9 @@
 
 namespace spec
 {
+    /*!
+        \brief TODO
+    */
     struct base_context_observer
     {
         std::vector<base_specify*> specifyers_m;

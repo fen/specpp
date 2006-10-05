@@ -1,0 +1,11 @@
+project
+        : requirements
+        <include>.
+        ;
+
+exe stack
+        :
+        stack.cpp
+        /boost/program_options
+        ;
+

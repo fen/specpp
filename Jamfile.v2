@@ -1,21 +1,54 @@
-import os ;
+import modules ;
 import set ;
+import stage ;
+import package ;
+import path ;
 
-project top
- :  requirements
-    <include>.
-    <include>third_party/boost
+local default-build ;
+if $(__file__:D) = ""
+{
+    default-build =
+        debug release
+        <threading>single <threading>multi
+        <runtime-link>shared <runtime-link>static
+        ;
+}
+else
+{
+    default-build =
+        debug
+        ;
+}
+
+
+project thebc
+ :  requirements <include>.
+    <include>$(BOOST_ROOT)
     <toolset>msvc:<define>_SCL_SECURE_NO_DEPRECATE
     <toolset>gcc,<variant>debug:<cxxflags>"-Werror -Wall"
-    <toolset>gcc,<variant>profile:<cxxflags>"-pg"
-  : default-build
-    <link>static
-    <threading>multi
+  : default-build $(default-build)
   : build-dir
-     $(BUILD_DIR)
+     $(BUILD_PATH)
   ;
 
+# Fix alias
 
-alias spec++            : libs/spec++/examples ;
-alias spec++-stack      : libs/spec++/examples/stack ;
+all-libraries =
+    [ MATCH .*libs/(.*)/build/.* : [ glob libs/*/build/Jamfile ] ]
+    ;
 
+for local l in $(all-libraries)
+{
+        alias $(l) : libs/$(l)/build//thebc_$(l) ;
+        explicit $(l) ;
+}
+
+alias headers : : : : <include>. ;
+
+libraries = $(all-libraries) ;
+
+# Make project ids of all libraries known.
+for local l in $(libraries)
+{
+    use-project /thebc/$(l) : libs/$(l)/build ;
+}

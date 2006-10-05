@@ -1,0 +1,34 @@
+project thebc/spec++/doc ;
+
+import boostbook : boostbook ;
+using quickbook ;
+
+doxygen specpp_doxygen
+   :
+      [ glob ../../../thebc/spec++/*.hpp ]
+   :
+        <doxygen:param>EXTRACT_ALL=NO
+        <doxygen:param>HIDE_UNDOC_MEMBERS=YES
+        <doxygen:param>EXTRACT_PRIVATE=NO
+        <doxygen:param>ENABLE_PREPROCESSING=NO
+        <doxygen:param>MACRO_EXPANSION=YES
+        <doxygen:param>EXPAND_ONLY_PREDEF=YES
+        <doxygen:param>SEARCH_INCLUDES=YES
+        <doxygen:param>INCLUDE_PATH=$(THEBC_ROOT)
+   ;
+
+xml specpp_xml : spec++.qbk ;
+
+boostbook standalone
+   :
+      specpp_xml
+      specpp_doxygen
+   :
+        <xsl:param>boost.root=../../../..
+        <xsl:param>boost.header.root=$(THEBC_ROOT)
+        <xsl:param>boost.libraries=../../../../libs/libraries.htm
+        <xsl:param>generate.section.toc.level=3
+        <xsl:param>chunk.first.sections=1
+   ;
+
+
