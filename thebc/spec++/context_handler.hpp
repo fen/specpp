@@ -55,6 +55,7 @@ namespace spec
 
 
 
+    // REVISIT (fred) : My singleton_ptr should be used this is not safe.
     typedef detail::singleton<detail::impl::context_handler> context_handler;
 
 } // namespace spec

@@ -1,5 +1,11 @@
 [section Introduction]
 
-The [classref spec::output spec::output<>] is a class that...
+[*Spec++] is a framework for practicing [*B]ehavior [*D]riven [*D]evelopment (BDD) in C++.
+
+The main goals when developing spec++ was that it should:
+
+* be easy to create new contexts (write code and no more).
+* have simple design.
+* work with diffrent platforms and diffrent compilers.
 
 [endsect]

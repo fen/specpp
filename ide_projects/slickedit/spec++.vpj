@@ -77,13 +77,6 @@
 			<F N="../../Jamfile.v2"/>
 			<F N="../../project-root.jam"/>
 		</Folder>
-		<Folder Name="../../libs">
-			<Folder Name="spec++">
-				<Folder Name="build">
-					<F N="../../libs/spec++/build/Jamfile.v2"/>
-				</Folder>
-			</Folder>
-		</Folder>
 		<Folder Name="../../thebc">
 			<Folder Name="spec++">
 				<Folder Name="detail">

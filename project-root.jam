@@ -1,10 +1,7 @@
 path-constant TOP : . ;
 path-constant THEBC_ROOT : . ;
 path-constant BUILD_PATH : ./bin ;
-path-constant BOOST_ROOT : third_party/boost ;
+path-constant BOOST_ROOT : . ;
 
-use-project /thebc/spec++ : libs/spec++/examples/ ;
-use-project /thebc/spec++/examples/stack : libs/spec++/examples/stack ;
-use-project /thebc/spec++/documentation/ : libs/spec++/documentation ;
-use-project /boost/program-options : $(BOOST_ROOT)/libs/program_options/build ;
+use-project /boost/program-options : third_party/boost/libs/program_options/build ;
 

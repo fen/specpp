@@ -1,4 +1,6 @@
-[h2 Stack example]
+[section Stack example]
+
+[c++]
 
         template<int N>
         struct stack_helper
@@ -117,3 +119,4 @@
             }
         }
 
+[endsect]

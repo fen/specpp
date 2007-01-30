@@ -1,5 +1,0 @@
-project thebc/spec++
-    :
-    source-location ../examples/
-    ;
-

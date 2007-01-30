@@ -1,34 +1,45 @@
-project thebc/spec++/doc ;
+import toolset ;
+toolset.using doxygen ;
+import quickbook ;
+import boostbook ;
 
-import boostbook : boostbook ;
-using quickbook ;
-
-doxygen specpp_doxygen
+doxygen autodoc
    :
       [ glob ../../../thebc/spec++/*.hpp ]
    :
-        <doxygen:param>EXTRACT_ALL=NO
-        <doxygen:param>HIDE_UNDOC_MEMBERS=YES
+        <doxygen:param>EXTRACT_ALL=YES
+        <doxygen:param>HIDE_UNDOC_MEMBERS=NO
         <doxygen:param>EXTRACT_PRIVATE=NO
-        <doxygen:param>ENABLE_PREPROCESSING=NO
+        <doxygen:param>ENABLE_PREPROCESSING=YES
         <doxygen:param>MACRO_EXPANSION=YES
         <doxygen:param>EXPAND_ONLY_PREDEF=YES
         <doxygen:param>SEARCH_INCLUDES=YES
-        <doxygen:param>INCLUDE_PATH=$(THEBC_ROOT)
    ;
 
-xml specpp_xml : spec++.qbk ;
+xml specpp
+    :
+        spec++.qbk
+    ;
 
 boostbook standalone
-   :
-      specpp_xml
-      specpp_doxygen
-   :
-        <xsl:param>boost.root=../../../..
-        <xsl:param>boost.header.root=$(THEBC_ROOT)
-        <xsl:param>boost.libraries=../../../../libs/libraries.htm
-        <xsl:param>generate.section.toc.level=3
-        <xsl:param>chunk.first.sections=1
-   ;
+    :
+        specpp
+    :
+        <xsl:param>toc.max.depth=3
+        <xsl:param>toc.section.depth=3
+        <xsl:param>chunk.section.depth=3
+
+        #   Defaults are
+        #       boost.root=../..
+        #       boost.libraries=libraries.html
+        #       html.stylesheet=boostbook.css
+        #       navig.graphics.path=images//
+        #       boost.header.root=$boost.root
+        <xsl:param>boost.root=http://boost.org
+        <xsl:param>boost.libraries=http://boost.org/libs/libraries.htm
+        <xsl:param>html.stylesheet=http://boost.org/doc/html/boostbook.css
+        <xsl:param>navig.graphics.path=http://boost.org/doc/html/images//
+        <xsl:param>boost.header.root=../../../..
+    ;
 
 

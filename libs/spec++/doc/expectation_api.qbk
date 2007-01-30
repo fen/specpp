@@ -1,6 +1,6 @@
 [section Expectation API]
 
-[h2 Equality]
+[section Value]
 
 [h4 Equal and Not equal ]
 
@@ -49,5 +49,7 @@
 
         value( <value> ).should.be( <type> );
         value( <value> ).should.not_be( <type> );
+
+[endsect]
 
 [endsect]

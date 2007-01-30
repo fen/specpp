@@ -1,4 +1,6 @@
-[h2 Expectation API example]
+[section Expectation API example]
+
+[c++]
 
         struct test_data
         {
@@ -115,3 +117,4 @@
             }
         }
 
+[endsect]

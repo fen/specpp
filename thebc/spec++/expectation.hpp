@@ -163,7 +163,7 @@ namespace spec
                 template<typename T1>
                 bool be(T1 const& expected)
                 {
-                    if(typeid(actual_m) == typeid(expected))
+                    if(actual_m == expected)
                     {
                         return true;
                     }
@@ -173,7 +173,7 @@ namespace spec
                 template<typename T1>
                 bool not_be(T1 const& expected)
                 {
-                    if(typeid(actual_m) != typeid(expected))
+                    if(actual_m != expected)
                     {
                         return true;
                     }
