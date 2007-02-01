@@ -286,7 +286,7 @@ namespace spec
 
     void violated(std::string const& message)
     {
-        throw 1;
+        throw expectation_notmet(message);
     }
 
     template<typename T>
@@ -300,5 +300,28 @@ namespace spec
         detail::impl::should<T> must;
     };
 } // namespace spec
+
+#define function\
+    bool thrown = false;\
+    try {
+
+#define method function
+
+#define should_throw\
+    }\
+    catch( ... ){ thrown = true; }\
+    if( !thrown ){ violated( "Didn't throw an exception but should have" ); }
+
+#define should_not_throw\
+    }\
+    catch( ... ){ thrown = true; }\
+    if( thrown ){ violated( "Did throw an exception but shouldn't" ); } 
+
+#define STRINGIFY( X ) #X
+
+#define should_throw_an( TYPE )\
+    }\
+    catch( TYPE& ){ thrown = true; }\
+    if( !thrown ){ violated( "Didn't throw an exception of type " STRINGIFY( TYPE ) " but should have" ); }
 
 #endif // EXPECTATION_HPP

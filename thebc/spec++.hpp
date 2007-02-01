@@ -32,7 +32,6 @@
 #include <thebc/spec++/detail/singleton.hpp>
 
 /*************************************************************************************************/
-// Behinder the scenes
 
 #include <thebc/spec++/base_specify.hpp>
 #include <thebc/spec++/base_context_observer.hpp>
@@ -52,5 +51,20 @@
 
 #include <thebc/spec++/context.hpp>
 #include <thebc/spec++/specify.hpp>
+
+// Define the standard main function
+#define SPECPP_MAIN\
+    int main(int argc, char* argv[])\
+    {\
+        spec::options option(argc, argv);\
+        if(option.continue_run())\
+        {\
+            spec::runner r(option);\
+            spec::runner::result result = r.run();\
+            spec::display(option, result);\
+        }\
+        spec::context_handler::destroy();\
+    }
+    
 
 #endif // SPECPP_HPP

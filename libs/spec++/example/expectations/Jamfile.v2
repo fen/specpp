@@ -1,11 +1,13 @@
 project
         : requirements
         <include>.
-        <define>BOOST_ALL_NO_LIB
         ;
+
+alias program_options : /boost/program_options//boost_program_options/<link>static ;
+
 exe example1
         :
         1.cpp
-        /boost/program_options
+        program_options
         ;
 

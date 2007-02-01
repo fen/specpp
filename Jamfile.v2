@@ -24,8 +24,11 @@ else
 project thebc
  :  requirements <include>.
     <include>$(BOOST_ROOT)
+    <include>$(THEBC_IMPORT)
+    <include>$(SPECPP)
     <toolset>msvc:<define>_SCL_SECURE_NO_DEPRECATE
-    <toolset>gcc,<variant>debug:<cxxflags>"-Werror -Wall"
+    #<toolset>gcc,<variant>debug:<cxxflags>"-Werror -Wall"
+    <toolset>gcc,<variant>debug:<cxxflags>""
   : default-build $(default-build)
   : build-dir
      $(BUILD_PATH)

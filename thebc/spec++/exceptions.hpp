@@ -17,9 +17,21 @@ namespace spec
     class expectation_notmet : public std::exception
     {
     public:
+
+        expectation_notmet() {}
+
+        expectation_notmet(std::string const& message)
+        : message_( message )
+        {}
+
         virtual ~expectation_notmet() throw() {}
 
-        virtual char const* what() const throw() = 0;
+        virtual char const* what() const throw()
+        {
+            return message_.c_str();
+        }
+    private:
+        std::string message_;
     };
 
     template<typename ActualT, typename ExpectedT>

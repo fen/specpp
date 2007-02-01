@@ -54,11 +54,11 @@ context("An empty stack", stack_helper_0)
     }
     specify("should complain when sent pop")
     {
-        // do when I have implemented raise.
+        method stack.pop(); should_throw;
     }
     specify("should complain when sent top")
     {
-        // do when I ahve implemented raise.
+        method stack.top(); should_throw_an( int );
     }
 }
 

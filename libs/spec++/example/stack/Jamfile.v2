@@ -3,9 +3,12 @@ project
         <include>.
         ;
 
+alias program_options : /boost/program_options//boost_program_options/<link>static ;
+
 exe stack
         :
+        # Source
         stack.cpp
-        /boost/program_options
+        program_options
         ;
 
