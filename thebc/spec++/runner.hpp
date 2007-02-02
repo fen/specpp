@@ -12,6 +12,9 @@
 #ifndef RUNNER_HPP
 #define RUNNER_HPP
 
+#include <functional>
+#include <algorithm>
+
 /*************************************************************************************************/
 
 namespace spec
@@ -35,7 +38,8 @@ namespace spec
         result& run();
 
     private:
-        bool run_spec(std::string const& name);
+        bool run_context(std::string const& name);
+        bool run_specify(std::string const& name);
 
         result result_m;
         options& options_m;
@@ -61,11 +65,15 @@ namespace spec
 
         foreach(spec::base_context_observer* c, run)
         {
-            if(run_spec(c->name))
+            if(run_context(c->name))
             {
                 result_m.push_back(std::make_pair(c->name, specify_container()));
                 foreach(spec::base_specify* s, c->specifyers_m)
                 {
+                    if( !run_specify( s->name ) )
+                    {
+                        continue;
+                    }
                     std::string message;
                     bool expected_result = true;
 
@@ -100,21 +108,50 @@ namespace spec
 
 /*************************************************************************************************/
 
-    bool runner::run_spec(std::string const& name)
+    // TODO (fred) : All this should be done with hash string compare is so
+    // slow.
+    bool runner::run_context(std::string const& name)
     {
-        if(options_m.specs().size() == 0)
+        std::vector<std::string>& context_names = options_m.contexts();
+
+        // If the user didn't give us any context's to specifically run we
+        // know that he wants to run every context so we should always return
+        // true.
+        if( context_names.empty() )
         {
             return true;
         }
 
-        foreach(std::string& spec_name, options_m.specs())
+        // Find name in the context_names list
+        std::vector<std::string>::iterator 
+            iter = std::find_if( context_names.begin(), context_names.end(), 
+                                 std::bind1st( std::equal_to<std::string>(), name ) );
+
+
+        if( iter != context_names.end() )
+            return true;
+            
+        return false;
+    }
+
+
+    bool runner::run_specify( std::string const& name )
+    {
+        std::vector<std::string>& specify_names = options_m.specifiers();
+
+        if( specify_names.empty() )
         {
-            if(spec_name == name)
-            {
-                return true;
-            }
+            return true;
         }
 
+        std::vector<std::string>::iterator 
+            iter = std::find_if( specify_names.begin(), specify_names.end(), 
+                                 std::bind1st( std::equal_to<std::string>(), name ) );
+
+
+            if( iter != specify_names.end() )
+            return true;
+            
         return false;
     }
 

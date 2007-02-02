@@ -28,16 +28,17 @@ namespace spec
     public:
         typedef FormatT     format_type;
 
-        output(runner::result const& result)
-        : result_m(result)
+        output(runner::result const& result, std::ostream& output_stream)
+        : result_( result ), output_stream_( output_stream )
         {}
 
         void display();
         void display(runner::result const& result);
 
     private:
-        runner::result  result_m;
-        format_type     format_m;
+        runner::result  result_;
+        std::ostream& output_stream_;
+        format_type     format_;
     };
 
 /*************************************************************************************************/
@@ -45,18 +46,20 @@ namespace spec
     template<typename T>
     void output<T>::display()
     {
-        foreach(context_pair context, result_m)
+        format_.start( output_stream_ );
+        foreach(context_pair context, result_)
         {
             // first is the context name/description
-            format_m.context_start(std::cout, context.first);
+            format_.context_begin( output_stream_, context.first );
 
             // second is the vector with N specifyers.
             foreach(specify_result& specify, context.second)
             {
-                format_m.specifyer(std::cout, specify);
+                format_.specifier( output_stream_, specify );
             }
+            format_.context_end( output_stream_, "" );
         }
-        format_m.finish(std::cout);
+        format_.finish( output_stream_ );
     }
 
 /*************************************************************************************************/
@@ -64,7 +67,7 @@ namespace spec
     template<typename T>
     void output<T>::display(runner::result const& result)
     {
-        result_m = result;
+        result_ = result;
         display();
     }
 

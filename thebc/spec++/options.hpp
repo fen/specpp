@@ -21,7 +21,7 @@ namespace spec
     namespace po = boost::program_options;
 
     /*!
-        \brief A class that takes client commandline parameters and handles them.
+        \brief A class that takes client command line parameters and handles them.
     */
     class options
     {
@@ -29,57 +29,92 @@ namespace spec
         options(int argc, char* argv[]);
 
         bool continue_run();
-        std::vector<std::string>& specs();
-        std::string format();
+        std::vector<std::string>& contexts();
+        std::vector<std::string>& specifiers();
+        std::string const& format() const;
+        std::string const& output_method() const;
+        std::string const& filename() const;
 
     private:
         bool continue_m;
-        std::vector<std::string> specs_m;
-        std::string format_m;
+        std::vector<std::string> contexts_;
+        std::vector<std::string> specifiers_;
+        std::string format_;
+        std::string output_method_;
+        std::string filename_;
 
     };
 
 /*************************************************************************************************/
 
     options::options(int argc, char* argv[])
-    : continue_m(true)
+    : continue_m( true )
     {
-        po::options_description desc("Allowed options");
-        desc.add_options()
-            ("help,h", "produce help message")
-            ("version,v", "show version number")
-            ("spec,s", po::value< std::vector<std::string> >(),
-            "specify one or more specs you want to run")
-            ("format,f", po::value< std::vector<std::string> >(),
-            "the format of the output")
+        po::options_description general( "General options" );
+        general.add_options()
+            ("help,h", "Print Help (this message) and exit")
+            ("version,v", "Print version information and exit")
             ;
 
-        po::positional_options_description p;
-        p.add("spec", -1);
-        p.add("format", 1);
+        po::options_description format( "Output format options" );
+        format.add_options()
+            ("output-method", po::value<std::string>()->default_value("stdout"),
+             "Choose one output method (stdout, stderr, or file)")
+            ("filename", po::value<std::string>()->default_value("specpp"),
+             "If file has been choose as output method arg will be used as filename, file extension is added automatically")
+            ("format,f",po::value<std::string>()->default_value("compiler"),
+             "Use arg as output")
+            ;
+
+        po::options_description spec( "Specification options" );
+        spec.add_options()
+            ("context,c", po::value<std::vector<std::string>>(),
+             "Specify by description the context you want to run.")
+            ("specify,s", po::value<std::vector<std::string>>(),
+             "Specify by description the specifier you want to run.")
+            ;
+
+        po::options_description all( "Allowed options" );
+        all.add( general ).add( format ).add( spec );
 
         po::variables_map vm;
-        po::store(po::command_line_parser(argc, argv).
-          options(desc).positional(p).run(), vm);
-        po::notify(vm);
+        po::store( po::parse_command_line( argc, argv, all ), vm );
+        po::notify( vm );
 
-        if (vm.count("help"))
+        if( vm.count( "help" ) )
         {
-            std::cout << desc << "\n";
+            std::cout << all << "\n";
             continue_m = false;
         }
-        else if(vm.count("version"))
+        else if( vm.count( "version" ) )
         {
-            std::cout << "Version: " << SPECPP_VERSION << '\n';
+            std::cout << "Spec++ " << SPECPP_VERSION << "\n\n" << SPECPP_COPYRIGHT << "\n\n" << SPECPP_AUTHOR << '\n';
             continue_m = false;
         }
-        else if(vm.count("spec"))
+
+        if( vm.count( "context" ) )
         {
-            specs_m = vm["spec"].as< std::vector<std::string> >();
+            contexts_ = vm["context"].as< std::vector<std::string> >();
         }
-        else if(vm.count("format"))
+
+        if( vm.count( "specify" ) )
         {
-            format_m = vm["format"].as< std::vector<std::string> >()[0];
+            specifiers_ = vm["specify"].as< std::vector<std::string> >();
+        }
+        
+        if( vm.count( "format" ) )
+        {
+            format_ = vm["format"].as< std::string >();
+        }
+
+        if( vm.count( "output-method" ) )
+        {
+            output_method_ = vm["output-method"].as< std::string >();
+        }
+
+        if( vm.count( "filename" ) )
+        {
+            filename_ = vm["filename"].as< std::string >();
         }
 
     }
@@ -103,20 +138,17 @@ namespace spec
     }
 
 /*************************************************************************************************/
-    /* RETURN (fred) : May a list be more appropriate here.*/
-    /*!
-        \brief Get list of specs to run that has been specified by the user.
-
-        Return a list of context to run supplied by the users with the command line
-        paramter [-s, --spec].
-
-        \return A vector filled with 0..N context names to run.
-    */
-    std::vector<std::string>& options::specs()
+    // TODO (fred) : Re document this method...
+    std::vector<std::string>& options::contexts()
     {
-        return specs_m;
+        return contexts_;
     }
 
+/*************************************************************************************************/
+    std::vector<std::string>& options::specifiers()
+    {
+        return specifiers_;
+    }
 /*************************************************************************************************/
     /*!
         \brief Get the user supplied option of witch format output the user wants.
@@ -127,9 +159,17 @@ namespace spec
 
         \return A string containing the name of the formating option the user wants.
     */
-    std::string options::format()
+    std::string const& options::format() const
     {
-        return format_m;
+        return format_;
+    }
+    std::string const& options::output_method() const
+    {
+        return output_method_;
+    }
+    std::string const& options::filename() const
+    {
+        return filename_;
     }
 }
 

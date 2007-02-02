@@ -13,6 +13,8 @@
 #define SPECPP_HPP
 
 #define SPECPP_VERSION "0.1.0-M1"
+#define SPECPP_COPYRIGHT "Distributed under the Boost Software License, Version 1.0. (See\n accompanying file LICENSE_1_0.txt or copy at\n http://www.boost.org/LICENSE_1_0.txt)\n"
+#define SPECPP_AUTHOR   "Fredrik Eriksson <Fredrik.Eriksson@thebc.se>"
 
 /* REVISIT (fred) : I found that boost has the same macros so I should use those */
 #define DO_JOIN2(X,Y) X##Y

@@ -14,12 +14,16 @@
 class compiler_format
 {
 public:
-    void context_start(std::ostream& out, std::string const& name)
+    void start(std::ostream& out)
+    {
+    }
+
+    void context_begin(std::ostream& out, std::string const& name)
     {
         out << name << '\n';
     }
 
-    void specifyer(std::ostream& out, spec::runner::specify_result& specify)
+    void specifier(std::ostream& out, spec::runner::specify_result& specify)
     {
         out << '\t' << specify.specify_description() << '\n';
         if( !specify.expectation_met() )
@@ -29,6 +33,11 @@ public:
                 << specify.line() << " error: "
                 << specify.message() << '\n';
         }
+    }
+
+    void context_end( std::ostream& out, std::string const& text )
+    {
+        // This implementation 
     }
 
     void finish(std::ostream& out)
