@@ -20,33 +20,36 @@ namespace spec
         std::string const& output_method = opt.output_method();
 
         boost::shared_ptr<output_format::base> outformat;
-        std::string file_extention;
+        std::string file_extension;
 
         if( output_method == "stderr" )
             output.rdbuf( std::cerr.rdbuf() );
         else if( output_method == "file" )
             file_output = true;
 
-        // REVISIT (fred) : I have to fix the file output stuff using the same
-        // code is ugly :/
+// Add you output format the same way as bellow DON'T FORGET TO ADD
+// FILE EXTENSION 
+// ---------------------------------------------------------------------------
         if( format == "compiler" )
         {
             outformat.reset( new output_format::compiler() );
-            file_extention = ".txt";
+            file_extension = ".txt";
         }
+// ---------------------------------------------------------------------------
         else if( format == "xml" )
         {
             outformat.reset( new output_format::xml() );
-            file_extention = ".xml";
+            file_extension = ".xml";
         }
+// ---------------------------------------------------------------------------
         else
         {
-            throw std::runtime_error( "format not supported" );
+            throw std::runtime_error( "output format not supported" );
         }
 
         if( file_output )
         {
-            std::string filename = opt.filename()+file_extention;
+            std::string filename = opt.filename()+file_extension;
             file_stream.open(filename.c_str(), std::ios_base::out|std::ios_base::trunc);
             // If the file isn't open we should use the stdout as
             // fallback.
