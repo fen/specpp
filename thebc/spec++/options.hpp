@@ -68,9 +68,9 @@ namespace spec
 
         po::options_description spec( "Specification options" );
         spec.add_options()
-            ("context,c", po::value<std::vector<std::string>>(),
+            ("context,c", po::value< std::vector<std::string> >(),
              "Specify by description the context you want to run.")
-            ("specify,s", po::value<std::vector<std::string>>(),
+            ("specify,s", po::value< std::vector<std::string> >(),
              "Specify by description the specifier you want to run.")
             ;
 
