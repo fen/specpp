@@ -29,6 +29,7 @@
 #include <string>
 #include <iostream>
 #include <boost/program_options.hpp>
+#include <boost/shared_ptr.hpp>
 #include <boost/foreach.hpp>
 #define foreach BOOST_FOREACH
 #include <thebc/spec++/detail/singleton.hpp>

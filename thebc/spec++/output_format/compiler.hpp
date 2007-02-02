@@ -1,17 +1,11 @@
-// Spec++ context_handler.hpp  -----------------------------------------------//
-// © Copyright Fredrik Eriksson.
+#ifndef THEBC__SPECPP_OUTPUT_FORMAT_COMPILER_HPP
+#define THEBC__SPECPP_OUTPUT_FORMAT_COMPILER_HPP
 
-// Distributed under the Boost Software License, Version 1.0. (See
-// accompanying file LICENSE_1_0.txt or copy at
-// http://www.boost.org/LICENSE_1_0.txt)
+#include <thebc/spec++/output_format/base.hpp>
 
-// See http://www.thebc.org/libs/ for documenation
+namespace spec { namespace output_format {
 
-/*************************************************************************************************/
-#ifndef COMPILER_FORMAT_HPP
-#define COMPILER_FORMAT_HPP
-
-class compiler_format
+class compiler : public base
 {
 public:
     void start(std::ostream& out)
@@ -46,4 +40,7 @@ public:
     }
 };
 
-#endif // COMPILER_FORMAT_HPP
+}} // namespace spec::output_format
+
+
+#endif /* THEBC__SPECPP_OUTPUT_FORMAT_COMPILER_HPP */

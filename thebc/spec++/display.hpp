@@ -1,8 +1,9 @@
 #ifndef DISPLAY_HPP
 #define DISPLAY_HPP
 
-#include <thebc/spec++/format/compiler_format.hpp>
-#include <thebc/spec++/format/xml_format.hpp>
+#include <thebc/spec++/output_format/compiler.hpp>
+#include <thebc/spec++/output_format/xml.hpp>
+
 #include <stdexcept>
 #include <fstream>
 
@@ -18,6 +19,9 @@ namespace spec
         std::string const& format = opt.format();
         std::string const& output_method = opt.output_method();
 
+        boost::shared_ptr<output_format::base> outformat;
+        std::string file_extention;
+
         if( output_method == "stderr" )
             output.rdbuf( std::cerr.rdbuf() );
         else if( output_method == "file" )
@@ -27,36 +31,32 @@ namespace spec
         // code is ugly :/
         if( format == "compiler" )
         {
-            if( file_output )
-            {
-                std::string filename = opt.filename()+".txt";
-                file_stream.open(filename.c_str(), std::ios_base::out|std::ios_base::trunc);
-                // If the file isn't open we should use the stdout as
-                // fallback.
-                if( file_stream.is_open() )
-                    output.rdbuf( file_stream.rdbuf() );
-            }
-            spec::output<compiler_format> out( res, output );
-            out.display();
+            outformat.reset( new output_format::compiler() );
+            file_extention = ".txt";
         }
         else if( format == "xml" )
         {
-            if( file_output )
-            {
-                std::string filename = opt.filename()+".xml";
-                file_stream.open(filename.c_str(), std::ios_base::out|std::ios_base::trunc);
-                // If the file isn't open we should use the stdout as
-                // fallback.
-                if( file_stream.is_open() )
-                    output.rdbuf( file_stream.rdbuf() );
-            }
-            spec::output<xml_format> out( res, output );
-            out.display();
+            outformat.reset( new output_format::xml() );
+            file_extention = ".xml";
         }
         else
         {
             throw std::runtime_error( "format not supported" );
         }
+
+        if( file_output )
+        {
+            std::string filename = opt.filename()+file_extention;
+            file_stream.open(filename.c_str(), std::ios_base::out|std::ios_base::trunc);
+            // If the file isn't open we should use the stdout as
+            // fallback.
+            if( file_stream.is_open() )
+                output.rdbuf( file_stream.rdbuf() );
+        }
+
+        spec::output out( outformat, res, output );
+        out.display();
+
     }
 }
 

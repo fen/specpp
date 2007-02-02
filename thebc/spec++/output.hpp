@@ -11,6 +11,8 @@
 #ifndef OUTPUT_HPP
 #define OUTPUT_HPP
 
+#include <thebc/spec++/output_format/base.hpp>
+
 /*************************************************************************************************/
 
 namespace spec
@@ -18,58 +20,55 @@ namespace spec
 
 /*************************************************************************************************/
 
-    template<typename FormatT>
-    class output
-    {
-        typedef runner::result              result;
-        typedef runner::specify_result      specify_result;
-        typedef std::pair<std::string, std::vector<specify_result> > context_pair;
+class output
+{
+    typedef runner::result                                          result;
+    typedef runner::specify_result                                  specify_result;
+    typedef std::pair<std::string, std::vector<specify_result> >    context_pair;
+    typedef boost::shared_ptr<output_format::base>                  format_ptr;
 
-    public:
-        typedef FormatT     format_type;
+public:
 
-        output(runner::result const& result, std::ostream& output_stream)
-        : result_( result ), output_stream_( output_stream )
-        {}
+    output(format_ptr& ptr, result const& result, std::ostream& output_stream)
+    : result_( result ), output_stream_( output_stream ), format_( ptr )
+    {}
 
-        void display();
-        void display(runner::result const& result);
+    void display();
+    void display(runner::result const& result);
 
-    private:
-        runner::result  result_;
-        std::ostream& output_stream_;
-        format_type     format_;
-    };
+private:
+    runner::result  result_;
+    std::ostream&   output_stream_;
+    format_ptr      format_;
+};
 
 /*************************************************************************************************/
 
-    template<typename T>
-    void output<T>::display()
+void output::display()
+{
+    format_->start( output_stream_ );
+    foreach(context_pair context, result_)
     {
-        format_.start( output_stream_ );
-        foreach(context_pair context, result_)
+        // first is the context name/description
+        format_->context_begin( output_stream_, context.first );
+
+        // second is the vector with N specifyers.
+        foreach(specify_result& specify, context.second)
         {
-            // first is the context name/description
-            format_.context_begin( output_stream_, context.first );
-
-            // second is the vector with N specifyers.
-            foreach(specify_result& specify, context.second)
-            {
-                format_.specifier( output_stream_, specify );
-            }
-            format_.context_end( output_stream_, "" );
+            format_->specifier( output_stream_, specify );
         }
-        format_.finish( output_stream_ );
+        format_->context_end( output_stream_, "" );
     }
+    format_->finish( output_stream_ );
+}
 
 /*************************************************************************************************/
 
-    template<typename T>
-    void output<T>::display(runner::result const& result)
-    {
-        result_ = result;
-        display();
-    }
+void output::display(runner::result const& result)
+{
+    result_ = result;
+    display();
+}
 
 } // namespace spec
 

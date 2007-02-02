@@ -1,7 +1,11 @@
-#ifndef THEBC_SPECPP_FORMAT_XML_FORMAT_HPP
-#define THEBC_SPECPP_FORMAT_XML_FORMAT_HPP
+#ifndef THEBC__SPECPP_OUTPUT_FORMAT_XML_HPP
+#define THEBC__SPECPP_OUTPUT_FORMAT_XML_HPP
 
-class xml_format
+#include <thebc/spec++/output_format/base.hpp>
+
+namespace spec { namespace output_format {
+
+class xml : public base
 {
 public:
     void start(std::ostream& out)
@@ -33,7 +37,10 @@ public:
         }
         out << "\t\t</specify>\n";
     }
-
 };
 
-#endif /* THEBC_SPECPP_FORMAT_XML_FORMAT_HPP */
+}} // namespace spec::output_format
+
+
+#endif /* THEBC__SPECPP_OUTPUT_FORMAT_XML_HPP */
+
