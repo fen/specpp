@@ -8,7 +8,7 @@ alias regex : /boost/regex//boost_regex/<link>static ;
 
 exe example1
         :
-        1.cpp
+        expectations.cpp
         program_options
         regex
         ;

@@ -495,6 +495,7 @@ namespace spec
 #define should_throw_an( TYPE )\
     }\
     catch( TYPE& ){ thrown = true; }\
+    catch( ... ) { }\
     if( !thrown ){ violated( "Didn't throw an exception of type " STRINGIFY( TYPE ) " but should have" ); }
 
 #endif // EXPECTATION_HPP
