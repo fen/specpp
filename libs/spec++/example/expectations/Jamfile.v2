@@ -4,10 +4,12 @@ project
         ;
 
 alias program_options : /boost/program_options//boost_program_options/<link>static ;
+alias regex : /boost/regex//boost_regex/<link>static ;
 
 exe example1
         :
         1.cpp
         program_options
+        regex
         ;
 

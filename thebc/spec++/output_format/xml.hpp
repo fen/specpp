@@ -1,10 +1,13 @@
 #ifndef THEBC__SPECPP_OUTPUT_FORMAT_XML_HPP
 #define THEBC__SPECPP_OUTPUT_FORMAT_XML_HPP
 
+// ----------------------------------------------------------------------------
 #include <thebc/spec++/output_format/base.hpp>
 
+// ----------------------------------------------------------------------------
 namespace spec { namespace output_format {
 
+// ----------------------------------------------------------------------------
 class xml : public base
 {
 public:
@@ -39,8 +42,9 @@ public:
     }
 };
 
+// ----------------------------------------------------------------------------
 }} // namespace spec::output_format
 
-
+// ----------------------------------------------------------------------------
 #endif /* THEBC__SPECPP_OUTPUT_FORMAT_XML_HPP */
 

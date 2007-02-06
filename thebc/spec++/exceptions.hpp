@@ -7,17 +7,20 @@
 
 // See http://www.thebc.org/libs/ for documenation
 
-/*************************************************************************************************/
+// ----------------------------------------------------------------------------
 
-#ifndef EXCEPTIONS_HPP
-#define EXCEPTIONS_HPP
+#ifndef THEBC_SPECPP_EXCEPTIONS_HPP
+#define THEBC_SPECPP_EXCEPTIONS_HPP
 
+
+// ----------------------------------------------------------------------------
 namespace spec
 {
+
+// ----------------------------------------------------------------------------
     class expectation_notmet : public std::exception
     {
     public:
-
         expectation_notmet() {}
 
         expectation_notmet(std::string const& message)
@@ -61,4 +64,4 @@ namespace spec
     };
 } // namespace spec
 
-#endif // EXCEPTIONS_HPP
+#endif /* THEBC_SPECPP_EXCEPTIONS_HPP */

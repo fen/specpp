@@ -6,6 +6,5 @@ path-constant THEBC_IMPORT : third_party/thebc ;
 path-constant SPECPP : third_party/specpp ;
 
 use-project /boost/program_options : third_party/boost/libs/program_options/build ;
-alias program_options : third_party/boost/libs/program_options/build//boost_program_options ;
-explicit program_options ;
+use-project /boost/regex : third_party/boost/libs/regex/build ;
 
