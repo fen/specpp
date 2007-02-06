@@ -3,6 +3,7 @@
 // than this :)
 
 #include <cassert>
+#include <stdexcept>
 
 #ifndef STACK_HPP
 #define STACK_HPP
@@ -21,6 +22,7 @@ public:
     value_type pop();
     bool empty();
     bool full();
+    std::size_t size();
 
 private:
     value_type      array_m[STACK_CAPACITY];
@@ -34,7 +36,9 @@ stack<T>::stack()
 template<typename T>
 void stack<T>::push(T const& value)
 {
-    assert(top_m < STACK_CAPACITY);
+    if( full() )
+        throw std::runtime_error( "can't push a full stack" );
+
     array_m[++top_m] = value;
 }
 
@@ -42,12 +46,18 @@ void stack<T>::push(T const& value)
 template<typename T>
 T stack<T>::top()
 {
+    if( empty() )
+        throw std::runtime_error( "empty stack has no top" );
+
     return array_m[top_m];
 }
 
 template<typename T>
 T stack<T>::pop()
 {
+    if( empty() )
+        throw std::runtime_error( "can't pop empty stack" );
+
     T tmp = top();
     --top_m;
     return tmp;
@@ -65,7 +75,13 @@ bool stack<T>::empty()
 template<typename T>
 bool stack<T>::full()
 {
-    return top_m == 127 ? true:false;
+    return top_m == STACK_CAPACITY-1 ? true:false;
+}
+
+template<typename T>
+std::size_t stack<T>::size()
+{
+    return top_m+1;
 }
 
 #endif // STACK_HPP

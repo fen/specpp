@@ -31,7 +31,7 @@ context("A stack in general", stack_helper_4)
     }
     specify("should NOT remove the top item when sent top")
     {
-        value( stack.top() ).should.equal( 3 );
+        stack.top();
         value( stack.top() ).should.equal( 3 );
     }
     specify("should return the top item when sent pop")
@@ -47,6 +47,10 @@ context("An empty stack", stack_helper_0)
     {
         value( stack.empty() ).should.be( true );
     }
+    specify("should have 0 size")
+    {
+        value( stack.size() ).should.equal( 0 );
+    }
     specify("should no longer be empty after push")
     {
         stack.push( 10 );
@@ -58,7 +62,7 @@ context("An empty stack", stack_helper_0)
     }
     specify("should complain when sent top")
     {
-        method stack.top(); should_throw_an( int );
+        method stack.top(); should_throw;
     }
 }
 
@@ -78,6 +82,10 @@ context("An almost empty stack (with one item)", stack_helper_1)
     {
         stack.pop();
         value( stack.empty() ).should.be( true );
+    }
+    specify("should have 1 item in size")
+    {
+        value( stack.size() ).should.equal( 1 );
     }
 }
 
@@ -116,6 +124,11 @@ context("A full stack", stack_helper_full)
 
     specify("should complain on push")
     {
-        // has not implemented raise
+        method stack.push( 5 ); should_throw;
+    }
+
+    specify("should have the same size as stack capacity")
+    {
+        value( stack.size() ).should.equal( STACK_CAPACITY );
     }
 }
