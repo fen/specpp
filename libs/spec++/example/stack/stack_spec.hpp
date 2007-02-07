@@ -40,7 +40,6 @@ context("A stack in general", stack_helper_4)
     }
 }
 
-
 context("An empty stack", stack_helper_0)
 {
     specify("should be empty")
