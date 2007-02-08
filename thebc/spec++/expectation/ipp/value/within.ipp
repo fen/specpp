@@ -1,3 +1,10 @@
+// © Copyright Fredrik Eriksson.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
+
+// ---------------------------------------------------------------------------
+
 template<typename T>
 template<typename T1>
 spec::detail::value::within<T> spec::detail::value::should<T>::be_within(T1 const& tolerance)
@@ -13,7 +20,7 @@ spec::detail::value::not_within<T> spec::detail::value::should<T>::not_be_within
 }
 // ---------------------------------------------------------------------------
 namespace spec { namespace detail { namespace value {
-
+// ---------------------------------------------------------------------------
 template<typename T>
 struct within
 {
@@ -64,6 +71,5 @@ struct not_within
     T& actual_m;
     T tolerance_m;
 };
-
-}}} // namespace spec::detail::value
 // ---------------------------------------------------------------------------
+}}} // namespace spec::detail::value

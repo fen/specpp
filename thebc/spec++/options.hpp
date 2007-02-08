@@ -1,28 +1,21 @@
-// Spec++ options.hpp  -------------------------------------------------------//
 // © Copyright Fredrik Eriksson.
-
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
-// See http://www.thebc.org/libs/ for documenation
-
-/*************************************************************************************************/
+// ---------------------------------------------------------------------------
 
 #ifndef OPTIONS_HPP
 #define OPTIONS_HPP
 
-/*************************************************************************************************/
+// ---------------------------------------------------------------------------
 
 namespace spec
 {
-/*************************************************************************************************/
+// ---------------------------------------------------------------------------
 
     namespace po = boost::program_options;
 
-    /*!
-        \brief A class that takes client command line parameters and handles them.
-    */
     class options
     {
     public:
@@ -45,7 +38,7 @@ namespace spec
 
     };
 
-/*************************************************************************************************/
+// ---------------------------------------------------------------------------
 
     options::options(int argc, char* argv[])
     : continue_m( true )
@@ -120,57 +113,37 @@ namespace spec
     }
 
 
-/*************************************************************************************************/
-    /*!
-        \brief Should the program continue to run.
-
-        Command line arguments like [-h, --help] or [-v, --version] is information
-        arguments the user does not expect to get any thing more than that information.
-        The method returns true if we are going to continue to run after
-        the command line options have been takencare of. Or false if the user
-        has gotten the information he/she wanted from the options class.
-
-        \return true if we are going to continue to run else false.
-    */
+// ---------------------------------------------------------------------------
     bool options::continue_run()
     {
         return continue_m;
     }
-
-/*************************************************************************************************/
-    // TODO (fred) : Re document this method...
+// ---------------------------------------------------------------------------
     std::vector<std::string>& options::contexts()
     {
         return contexts_;
     }
-
-/*************************************************************************************************/
+// ---------------------------------------------------------------------------
     std::vector<std::string>& options::specifiers()
     {
         return specifiers_;
     }
-/*************************************************************************************************/
-    /*!
-        \brief Get the user supplied option of witch format output the user wants.
-
-        Return the output format option specified by the command line paramter
-        [-f, --format]. If the supplied format is non existing or invalid the
-        output will fallback to FORMAT_DEFAULT.
-
-        \return A string containing the name of the formating option the user wants.
-    */
+// ---------------------------------------------------------------------------
     std::string const& options::format() const
     {
         return format_;
     }
+// ---------------------------------------------------------------------------
     std::string const& options::output_method() const
     {
         return output_method_;
     }
+// ---------------------------------------------------------------------------
     std::string const& options::filename() const
     {
         return filename_;
     }
+// ---------------------------------------------------------------------------
 }
 
 #endif // OPTIONS_HPP

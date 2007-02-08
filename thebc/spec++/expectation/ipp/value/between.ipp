@@ -1,3 +1,10 @@
+// © Copyright Fredrik Eriksson.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
+
+// ---------------------------------------------------------------------------
+
 template<typename T>
 template<typename T1>
 spec::detail::value::between<T, T1> 
@@ -10,7 +17,7 @@ spec::detail::value::should<T>::be_between(T1 const& lower_bound)
     }
     return between<T, T1>( actual_m, lower_bound, lower, false );
 }
-
+// ---------------------------------------------------------------------------
 template<typename T>
 template<typename T1>
 spec::detail::value::between<T, T1> 
@@ -24,8 +31,7 @@ spec::detail::value::should<T>::not_be_between(T1 const& lower_bound)
 
     return between<T, T1>( actual_m, lower_bound, lower, true );
 }
-
-
+// ---------------------------------------------------------------------------
 template<typename T>
 template<typename T1>
 spec::detail::value::between_equal<T,T1> 
@@ -38,7 +44,7 @@ spec::detail::value::should<T>::be_between_or_equal_to(T1 const& lower_bound)
     }
     return between_equal<T, T1>( actual_m, lower_bound, lower, false );
 }
-
+// ---------------------------------------------------------------------------
 template<typename T>
 template<typename T1>
 spec::detail::value::between_equal<T,T1> 
@@ -52,9 +58,9 @@ spec::detail::value::should<T>::not_be_between_or_equal_to(T1 const& lower_bound
 
     return between_equal<T, T1>( actual_m, lower_bound, lower, true );
 }
-
+// ---------------------------------------------------------------------------
 namespace spec { namespace detail { namespace value {
-
+// ---------------------------------------------------------------------------
 template<typename T, typename T2>
 struct between
 {
@@ -107,7 +113,7 @@ struct between
     bool lower_;
     bool should_not_;
 };
-
+// ---------------------------------------------------------------------------
 template<typename T, typename T2>
 struct between_equal
 {
@@ -160,5 +166,5 @@ struct between_equal
     bool lower_;
     bool should_not_;
 };
-
+// ---------------------------------------------------------------------------
 }}} // namespace spec::detail::value

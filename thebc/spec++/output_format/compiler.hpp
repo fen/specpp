@@ -1,10 +1,20 @@
+// © Copyright Fredrik Eriksson.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
+
+// ---------------------------------------------------------------------------
+
 #ifndef THEBC__SPECPP_OUTPUT_FORMAT_COMPILER_HPP
 #define THEBC__SPECPP_OUTPUT_FORMAT_COMPILER_HPP
 
+// ---------------------------------------------------------------------------
 #include <thebc/spec++/output_format/base.hpp>
 
+// ---------------------------------------------------------------------------
 namespace spec { namespace output_format {
 
+// ---------------------------------------------------------------------------
 class compiler : public base
 {
 public:
@@ -40,7 +50,8 @@ public:
     }
 };
 
+// ---------------------------------------------------------------------------
 }} // namespace spec::output_format
 
-
+// ---------------------------------------------------------------------------
 #endif /* THEBC__SPECPP_OUTPUT_FORMAT_COMPILER_HPP */

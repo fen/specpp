@@ -1,11 +1,23 @@
+// © Copyright Fredrik Eriksson.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
+
+// ---------------------------------------------------------------------------
+
 #ifndef THEBC_SPECPP_DETAIL_TO_STRING_HPP
 #define THEBC_SPECPP_DETAIL_TO_STRING_HPP
+
+// ---------------------------------------------------------------------------
 
 #include <sstream>
 #include <stdexcept>
 
+// ---------------------------------------------------------------------------
+
 namespace spec { namespace detail {
 
+// ---------------------------------------------------------------------------
 namespace impl {
     template<typename T>
     std::string to_string(T const& obj)
@@ -28,6 +40,7 @@ namespace impl {
     }
 } // namespace impl
 
+// ---------------------------------------------------------------------------
 template<typename T>
 std::string to_string(T const& obj)
 {
@@ -37,22 +50,27 @@ std::string to_string(T const& obj)
     catch(...){ return ""; }
 }
 
+// ---------------------------------------------------------------------------
 std::string to_string(char const* str)
 {
     return str;
 }
 
+// ---------------------------------------------------------------------------
 std::string to_string(std::string const& str)
 {
     return str;
 }
 
+// ---------------------------------------------------------------------------
 std::string to_string(bool v)
 {
     return v?"true":"false";
 }
 
+// ---------------------------------------------------------------------------
 }} // namespace spec::detail
 
 
+// ---------------------------------------------------------------------------
 #endif /* THEBC_SPECPP_DETAIL_TO_STRING_HPP */

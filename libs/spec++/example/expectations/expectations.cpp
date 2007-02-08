@@ -308,4 +308,13 @@ context("Exception", test_data)
 	}
 }
 
+struct abc{};
+context("Output test", abc)
+{
+    specify("this message contains <> chars that xml output don't support")
+    {
+        value( 10 ).should == 10;
+    }
+}
+
 SPECPP_MAIN
