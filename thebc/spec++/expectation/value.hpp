@@ -118,6 +118,12 @@ namespace detail { namespace value {
         template<typename T1>
         bool not_be_dividable_by(T1 const& expected);
 // ---------------------------------------------------------------------------
+// ipp/value/even_odd.ipp
+        bool be_even();
+
+        bool be_odd();
+// ---------------------------------------------------------------------------
+        
 
 
         T& actual_m;
@@ -150,5 +156,6 @@ struct value_spec_t
 #include <thebc/spec++/expectation/ipp/value/be.ipp>
 #include <thebc/spec++/expectation/ipp/value/match.ipp>
 #include <thebc/spec++/expectation/ipp/value/dividable.ipp>
+#include <thebc/spec++/expectation/ipp/value/even_odd.ipp>
 
 #endif /* THEBC_SPECPP_EXPECTATION_VALUE_HPP */

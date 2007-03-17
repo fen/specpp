@@ -351,5 +351,25 @@ context("Dividable by", divi)
     }
 }
 
+context("Even and odd", divi)
+{
+    specify("should show that three is odd")
+    {
+        value( three ).should.be_odd();
+    }
+    specify("should show that two is even")
+    {
+        value( two ).should.be_even();
+    }
+    specify("testing error message odd")
+    {
+        value( two ).should.be_odd();
+    }
+    specify("testing error message even")
+    {
+        value( three ).should.be_even();
+    }
+}
+
 
 SPECPP_MAIN
