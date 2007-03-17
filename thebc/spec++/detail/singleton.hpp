@@ -30,21 +30,18 @@ public:
     class pointer
     {
     public:
-        pointer() : m_ptr(singleton::instance()) {}
+        pointer() : m_ptr(singleton<T>::instance()) {}
         T* operator*()
         {
             if(m_instance == 0)
             {
-                m_ptr = singleton::instance();
+                m_ptr = singleton<T>::instance();
             }
             return *m_ptr;
         }
-        T* operator->()
+        T* operator -> ()
         {
-            if(m_instance == 0)
-            {
-                m_ptr = singleton::instance();
-            }
+            m_ptr = singleton<T>::instance();
             return m_ptr;
         }
     private:

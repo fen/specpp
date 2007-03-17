@@ -317,4 +317,39 @@ context("Output test", abc)
     }
 }
 
+struct divi
+{
+    int one, two, three, four, five, six, seven, eight, nine;
+    divi():
+    one( 1 ), two( 2 ), three( 3 ), four( 4 ), five( 5 ), six( 6 ), seven( 7 ),
+    eight( 8 ), nine( 9 )
+    {
+    }
+
+};
+
+context("Dividable by", divi)
+{
+    specify("should show that six is dividable by three")
+    {
+        value( six ).should.be_dividable_by( three );
+    }
+    
+    specify("should show that seven is not dividable by three")
+    {
+        value( seven ).should.not_be_dividable_by( three );
+    }
+
+    specify("testing not dividable by error message")
+    {
+        value( six ).should.not_be_dividable_by( three );
+    }
+    
+    specify("testing dividable by error message")
+    {
+        value( seven ).should.be_dividable_by( three );
+    }
+}
+
+
 SPECPP_MAIN
