@@ -8,6 +8,8 @@
 #ifndef THEBC_SPECPP_EXCEPTIONS_HPP
 #define THEBC_SPECPP_EXCEPTIONS_HPP
 
+#include <string>
+#include <exception>
 
 // ----------------------------------------------------------------------------
 namespace spec
