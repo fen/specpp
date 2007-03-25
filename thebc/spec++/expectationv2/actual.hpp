@@ -14,13 +14,16 @@ struct actual_t
     template<typename T>
     actual_t(T const& actual_value):
 
-    predicate( actual_value )
+        // Add you group bellow
+            predicate( actual_value )
+        ,   type( actual_value )
 
     {
     }
 
-    // Add your group at this point
+    // Add your group bellow
     detail::implementor_t<groups::predicate_t<Actual> > predicate;
+    detail::implementor_t<groups::type_t<Actual> > type;
 };
 
 // actual {{{1
