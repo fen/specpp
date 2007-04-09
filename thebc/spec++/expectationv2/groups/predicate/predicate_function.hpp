@@ -26,7 +26,7 @@ struct predicate_function
             return report_error( 
                                  detail::message_chooser<Not>(
                                         "Actual predicate value (${A}) should have been ${E}"
-                                    ,   "Acutal predicate value (${A}) should not have been ${E} but was"
+                                    ,   "Actual predicate value (${A}) should not have been ${E} but was"
                                     , actual
                                     , Predicate
                                  )

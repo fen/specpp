@@ -24,6 +24,11 @@ namespace spec { namespace detail {
     {
         return ret<Not>( x == y );
     }
+    template<bool Not>
+    inline bool check(bool p)
+    {
+        return ret<Not>( p );
+    }
 
     // char pointer check
     template<bool Not>
