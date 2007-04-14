@@ -1,0 +1,15 @@
+project
+        : requirements
+        <include>.
+        ;
+
+alias program_options :
+/boost/program_options//boost_program_options/<link>static ;
+alias regex : /boost/regex//boost_regex/<link>static ;
+
+exe expectation
+        :
+        main.cpp
+        program_options
+        regex
+        ;

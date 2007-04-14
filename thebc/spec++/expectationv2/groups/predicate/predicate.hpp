@@ -10,10 +10,9 @@ template<typename Actual, bool Not = false>
 struct predicate_t: detail::if_not_impl<predicate_t, Actual, Not> 
 {
     predicate_t(Actual const& actual_value):
-
-    base_t::base_t( actual_value ), // Pass the actual_value to the base class 
-    be_true( actual_value ),
-    be_false( actual_value )
+            base_t::base_t( actual_value )  // Pass the actual_value to the base class 
+        ,   be_true( actual_value )
+        ,   be_false( actual_value )
 
     {
     }

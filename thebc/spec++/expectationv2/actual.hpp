@@ -18,7 +18,7 @@ struct actual_t
             predicate( actual_value )
         ,   type( actual_value )
         ,   string( actual_value )
-
+        ,   integer( actual_value )
     {
     }
 
@@ -26,6 +26,7 @@ struct actual_t
     detail::implementor_t<groups::predicate_t<Actual> > predicate;
     detail::implementor_t<groups::type_t<Actual> > type;
     detail::implementor_t<groups::string_t<Actual> > string;
+    detail::implementor_t<groups::integer_t<Actual> > integer;
 };
 
 // actual {{{1
