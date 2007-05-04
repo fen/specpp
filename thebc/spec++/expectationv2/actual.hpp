@@ -5,8 +5,12 @@
 
 #include "groups/groups.hpp"
 
-namespace spec {
-    
+namespace spec 
+{
+
+namespace detail 
+{
+   
 // actual_t object {{{1
 template<typename Actual>
 struct actual_t
@@ -23,17 +27,19 @@ struct actual_t
     }
 
     // Add your group bellow
-    detail::implementor_t<groups::predicate_t<Actual> > predicate;
-    detail::implementor_t<groups::type_t<Actual> > type;
-    detail::implementor_t<groups::string_t<Actual> > string;
-    detail::implementor_t<groups::integer_t<Actual> > integer;
+    detail::implementor_t<groups::predicate_t<Actual> >     predicate;
+    detail::implementor_t<groups::type_t<Actual> >          type;
+    detail::implementor_t<groups::string_t<Actual> >        string;
+    detail::implementor_t<groups::integer_t<Actual> >       integer;
 };
+
+}
 
 // actual {{{1
 template<typename T>
-actual_t<T> actual(T const& actual_value)
+detail::actual_t<T> actual(T const& actual_value)
 {
-    return actual_t<T>( actual_value );
+    return detail::actual_t<T>( actual_value );
 }
 
 } // namespace spec
