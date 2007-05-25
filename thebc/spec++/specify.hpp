@@ -2,8 +2,15 @@
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
+// ---------------------------------------------------------------------------
 #ifndef SPECIFY_HPP
 #define SPECIFY_HPP
+
+#if defined( USING_THEBC_SPECIFY_MACRO ) || defined( USING_THEBC_MACRO )
+// THEBC_SPECIFY( "abc" )
+#else
+// specify( "abc" )
+#endif
 
 #define specify( TEXT )\
 struct JOIN(specify_, __LINE__) : spec::base_specify, data \
