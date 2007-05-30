@@ -1,6 +1,7 @@
 #include <thebc/spec++.hpp>
-#include <thebc/spec++/expectationv2/actual.hpp>
 using namespace spec;
+#define context THEBC_CONTEXT
+#define specify THEBC_SPECIFY
 
 #include "string.hpp"
 #include "predicate.hpp"

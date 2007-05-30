@@ -7,13 +7,7 @@
 #define CONTEXT_HPP
 
 // ---------------------------------------------------------------------------
-#if defined( USING_THEBC_CONTEXT_MACRO ) || defined( USING_THEBC_MACRO )
-// THEBC_CONTEXT( "...", helper_class )
-#else
-// context( "...", helper_class )
-#endif
-
-#define context( TEXT, DATA )\
+#define THEBC_CONTEXT( TEXT, DATA )\
 namespace JOIN(JOIN(DATA, _namespace_),__LINE__){\
     typedef DATA    data;\
     struct context_observer : spec::base_context_observer\

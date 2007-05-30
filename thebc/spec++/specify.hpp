@@ -6,13 +6,7 @@
 #ifndef SPECIFY_HPP
 #define SPECIFY_HPP
 
-#if defined( USING_THEBC_SPECIFY_MACRO ) || defined( USING_THEBC_MACRO )
-// THEBC_SPECIFY( "abc" )
-#else
-// specify( "abc" )
-#endif
-
-#define specify( TEXT )\
+#define THEBC_SPECIFY( TEXT )\
 struct JOIN(specify_, __LINE__) : spec::base_specify, data \
 {\
     JOIN(specify_, __LINE__)() : spec::base_specify(TEXT, __FILE__, __LINE__), data()\
