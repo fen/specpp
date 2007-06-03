@@ -2,10 +2,11 @@
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
+// ---------------------------------------------------------------------------
 #ifndef SPECIFY_HPP
 #define SPECIFY_HPP
 
-#define specify( TEXT )\
+#define THEBC_SPECIFY( TEXT )\
 struct JOIN(specify_, __LINE__) : spec::base_specify, data \
 {\
     JOIN(specify_, __LINE__)() : spec::base_specify(TEXT, __FILE__, __LINE__), data()\

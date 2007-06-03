@@ -51,7 +51,11 @@ std::string to_string(T const& obj)
 }
 
 // ---------------------------------------------------------------------------
-std::string to_string(char const* str)
+std::string to_string(char const* const& str)
+{
+    return str;
+}
+std::string to_string(char* const& str)
 {
     return str;
 }

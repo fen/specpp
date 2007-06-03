@@ -3,13 +3,13 @@ project
         <include>.
         ;
 
-alias program_options : /boost/program_options//boost_program_options/<link>static ;
+alias program_options :
+/boost/program_options//boost_program_options/<link>static ;
 alias regex : /boost/regex//boost_regex/<link>static ;
 
-exe example1
+exe expectation
         :
-        expectations.cpp
+        main.cpp
         program_options
         regex
         ;
-
