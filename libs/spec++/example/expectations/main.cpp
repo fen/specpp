@@ -8,4 +8,4 @@ using namespace spec;
 #include "integer.hpp"
 #include "type.hpp"
 
-SPECPP_MAIN
+THEBC_SPECPP_MAIN

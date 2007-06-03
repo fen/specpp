@@ -61,7 +61,7 @@
 // ----------------------------------------------------------------------------
 
 // Define the standard main function
-#define SPECPP_MAIN\
+#define THEBC_SPECPP_MAIN\
     int main(int argc, char* argv[])\
     {\
         try{\
