@@ -4,14 +4,19 @@
 #include "equal_function.hpp"
 #include "match_function.hpp"
 #include "../../detail/if_not_impl.hpp"
+#include "../../detail/boolean_inverter.hpp"
+#include "../../detail/group_holder.hpp"
 
 namespace spec { namespace groups {
     
 template<typename Actual, bool Not=false>
-struct string_t: detail::if_not_impl<string_t, Actual, Not>
+struct string_t: detail::if_not_impl<detail::group_holder<string_t<Actual, detail::boolean_inverter<Not>::value> >, Actual, Not>
 {
+	typedef detail::if_not_impl<detail::group_holder<string_t<Actual, detail::boolean_inverter<Not>::value> >, Actual, Not>
+		base_type_t;
+	
     string_t(Actual const& actual_value):
-            base_t::base_t( actual_value )
+            base_type_t( actual_value )
         ,   equal( actual_value )
         ,   match( actual_value )
         ,   actual_( actual_value )

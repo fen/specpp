@@ -3,14 +3,20 @@
 
 #include "predicate_function.hpp"
 #include "../../detail/if_not_impl.hpp"
+#include "../../detail/boolean_inverter.hpp"
+#include "../../detail/group_holder.hpp"
 
 namespace spec { namespace groups {
 
 template<typename Actual, bool Not = false>
-struct predicate_t: detail::if_not_impl<predicate_t, Actual, Not> 
+struct predicate_t: 
+	detail::if_not_impl<detail::group_holder<predicate_t<Actual, detail::boolean_inverter<Not>::value> >, Actual, Not> 
 {
+	typedef detail::if_not_impl<detail::group_holder<predicate_t<Actual, detail::boolean_inverter<Not>::value> >, Actual, Not>	
+			base_type_t;
+	
     predicate_t(Actual const& actual_value):
-            base_t::base_t( actual_value )  // Pass the actual_value to the base class 
+            base_type_t( actual_value )  // Pass the actual_value to the base class 
         ,   be_true( actual_value )
         ,   be_false( actual_value )
 
@@ -24,4 +30,4 @@ struct predicate_t: detail::if_not_impl<predicate_t, Actual, Not>
 }} // namespace spec::groups
 
 
-#endif /* THEBC_SPEC++_EXPECTATION_GROUPS_PREDICATE_PREDICATE_HPP */
+#endif /* THEBC_SPECPP_EXPECTATION_GROUPS_PREDICATE_PREDICATE_HPP */

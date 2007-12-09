@@ -4,14 +4,19 @@
 #include "../../detail/if_not_impl.hpp"
 #include "equal_function.hpp"
 #include "more_less_function.hpp"
+#include "../../detail/boolean_inverter.hpp"
+#include "../../detail/group_holder.hpp"
 
 namespace spec { namespace groups {
 
 template<typename Actual, bool Not = false>
-struct integer_t: detail::if_not_impl<integer_t, Actual, Not> 
+struct integer_t: detail::if_not_impl<detail::group_holder<integer_t<Actual, detail::boolean_inverter<Not>::value> >, Actual, Not> 
 {
+	typedef detail::if_not_impl<detail::group_holder<integer_t<Actual, detail::boolean_inverter<Not>::value> >, Actual, Not> 
+		base_type_t;
+	
     integer_t(Actual const& actual_value):
-            base_t::base_t( actual_value ) // Pass the actual_value to the base class 
+            base_type_t( actual_value ) // Pass the actual_value to the base class 
         ,   equal( actual_value )
         ,   be_less_than( actual_value )
         ,   be_less_than_or_equal_to( actual_value )

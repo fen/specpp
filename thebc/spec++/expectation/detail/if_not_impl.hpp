@@ -4,14 +4,14 @@
 namespace spec { namespace detail {
     
 template<
-        template<typename X, bool A> class T
+        class T
     ,   typename Actual
     ,   bool Not
 >
 struct if_not_impl;
 
 template<
-        template<typename X, bool A> class T
+        class T
     ,   typename Actual
 >
 struct if_not_impl<T,Actual,false>
@@ -23,11 +23,11 @@ struct if_not_impl<T,Actual,false>
     {
     }
 
-    T<Actual, true> not;
+    typename T::type not;
 };
 
 template<
-        template<typename X, bool A> class T
+        class T
     ,   typename Actual
 >
 struct if_not_impl<T,Actual,true>

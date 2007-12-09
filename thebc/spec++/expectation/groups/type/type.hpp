@@ -2,15 +2,19 @@
 #define THEBC_SPECPP_EXPECTATION_GROUPS_TYPE_TYPE_HPP
 
 #include "check_type.hpp"
+#include "../../detail/boolean_inverter.hpp"
+#include "../../detail/group_holder.hpp"
 
 namespace spec { namespace groups {
 
 template<typename Actual, bool Not = false>
-struct type_t: detail::if_not_impl<type_t, Actual, Not>
+struct type_t: detail::if_not_impl<detail::group_holder<type_t<Actual, detail::boolean_inverter<Not>::value> >, Actual, Not>
 {
+	typedef detail::if_not_impl<detail::group_holder<type_t<Actual, detail::boolean_inverter<Not>::value> >, Actual, Not>
+		base_type_t;
+	
     type_t(Actual const& actual_value):
-
-    base_t::base_t( actual_value )
+    	base_type_t( actual_value )
     {
     }
 
