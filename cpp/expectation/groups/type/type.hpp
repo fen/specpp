@@ -26,7 +26,7 @@ struct type_t: detail::if_not_impl<detail::group_holder<type_t<Actual, detail::b
             if( Not )
             {
                 std::string message = "The actual type should not have matched but did";
-                return report_error( message );
+                return cpp::spec::report_error( message );
             }
             else
                 return true;
@@ -38,7 +38,7 @@ struct type_t: detail::if_not_impl<detail::group_holder<type_t<Actual, detail::b
             else
             {
                 std::string message = "The actual type didn't match the expected type";
-                return report_error( message );
+                return cpp::spec::report_error( message );
             }
         }
     }

@@ -1,11 +1,11 @@
 #ifndef CPP_EXPECTATION_GROUPS_PREDICATE_PREDICATE_FUNCTION_HPP
 #define CPP_EXPECTATION_GROUPS_PREDICATE_PREDICATE_FUNCTION_HPP
 
-#include <thebc/spec++/report_error.hpp>
+#include <cpp/spec++/report_error.hpp>
 #include "../../detail/check.hpp"
 #include "../../detail/message_chooser.hpp"
 
-namespace cpp { namespace spec { namespace groups { namespace predicate {
+namespace cpp { namespace expectation { namespace groups { namespace predicate {
 
 template<typename Actual, bool Predicate, bool Not>
 struct predicate_function

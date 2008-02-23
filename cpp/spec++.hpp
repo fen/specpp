@@ -51,10 +51,14 @@
 #include <cpp/spec++/output.hpp>
 #include <cpp/spec++/display.hpp>
 
-#include <cpp/spec++/expectation.hpp>
+#include <cpp/expectation.hpp>
 
 #include <cpp/spec++/context.hpp>
 #include <cpp/spec++/specify.hpp>
+
+// ----------------------------------------------------------------------------
+
+using namespace cpp::expectation;
 
 // ----------------------------------------------------------------------------
 

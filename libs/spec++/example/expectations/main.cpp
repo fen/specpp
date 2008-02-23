@@ -1,5 +1,5 @@
 #include <cpp/spec++.hpp>
-using namespace spec;
+using namespace cpp::spec;
 #define context CPP_CONTEXT
 #define specify CPP_SPECIFY
 

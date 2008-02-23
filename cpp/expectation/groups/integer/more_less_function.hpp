@@ -24,7 +24,7 @@ namespace detail {
             template<typename Actual, typename Expected>
             bool operator()(Actual const& actual_value, Expected const& expected_value)
             {
-                return cpp::spec::detail::check<Not>( actual_value < expected_value );
+                return cpp::expectation::detail::check<Not>( actual_value < expected_value );
             }
         };
         template<bool Not>
@@ -33,7 +33,7 @@ namespace detail {
             template<typename Actual, typename Expected>
             bool operator()(Actual const& actual_value, Expected const& expected_value)
             {
-                return spec::detail::check<Not>( actual_value <= expected_value );
+                return cpp::expectation::detail::check<Not>( actual_value <= expected_value );
             }
         };
 
@@ -43,7 +43,7 @@ namespace detail {
             template<typename Actual, typename Expected>
             bool operator()(Actual const& actual_value, Expected const& expected_value)
             {
-                return spec::detail::check<Not>( actual_value > expected_value );
+                return cpp::expectation::detail::check<Not>( actual_value > expected_value );
             }
         };
         template<bool Not>
@@ -52,7 +52,7 @@ namespace detail {
             template<typename Actual, typename Expected>
             bool operator()(Actual const& actual_value, Expected const& expected_value)
             {
-                return spec::detail::check<Not>( actual_value >= expected_value );
+                return cpp::expectation::detail::check<Not>( actual_value >= expected_value );
             }
         };
     }
