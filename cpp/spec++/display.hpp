@@ -3,22 +3,23 @@
 // accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 // ---------------------------------------------------------------------------
-#ifndef THEBC_SPECPP_DISPLAY_HPP
-#define THEBC_SPECPP_DISPLAY_HPP
+#ifndef CPP_SPECPP_DISPLAY_HPP
+#define CPP_SPECPP_DISPLAY_HPP
 
 // ----------------------------------------------------------------------------
 
 #include <boost/shared_ptr.hpp>
 
-#include <thebc/spec++/output_format/compiler.hpp>
-#include <thebc/spec++/output_format/xml.hpp>
+#include <cpp/spec++/output_format/compiler.hpp>
+#include <cpp/spec++/output_format/xml.hpp>
 
 #include <stdexcept>
 #include <fstream>
 
 // ----------------------------------------------------------------------------
 
-namespace spec {
+namespace cpp { namespace spec {
+
 void display(options& opt, spec::runner::result const& res)
 {
     // stdout is default so this is valid
@@ -72,6 +73,6 @@ void display(options& opt, spec::runner::result const& res)
 
 // ----------------------------------------------------------------------------
 
-} // namespace spec
+}}
 
-#endif /* THEBC_SPECPP_DISPLAY_HPP */
+#endif /* CPP_SPECPP_DISPLAY_HPP */

@@ -5,14 +5,14 @@
 
 // ---------------------------------------------------------------------------
 
-#ifndef THEBC__SPECPP_OUTPUT_FORMAT_COMPILER_HPP
-#define THEBC__SPECPP_OUTPUT_FORMAT_COMPILER_HPP
+#ifndef CPP_SPECPP_OUTPUT_FORMAT_COMPILER_HPP
+#define CPP_SPECPP_OUTPUT_FORMAT_COMPILER_HPP
 
 // ---------------------------------------------------------------------------
-#include <thebc/spec++/output_format/base.hpp>
+#include <cpp/spec++/output_format/base.hpp>
 
 // ---------------------------------------------------------------------------
-namespace spec { namespace output_format {
+namespace cpp {namespace spec { namespace output_format {
 
 // ---------------------------------------------------------------------------
 class compiler : public base
@@ -27,7 +27,7 @@ public:
         out << name << '\n';
     }
 
-    void specifier(std::ostream& out, spec::runner::specify_result& specify)
+    void specifier(std::ostream& out, cpp::spec::runner::specify_result& specify)
     {
         out << '\t' << specify.specify_description() << '\n';
         if( !specify.expectation_met() )
@@ -51,7 +51,6 @@ public:
 };
 
 // ---------------------------------------------------------------------------
-}} // namespace spec::output_format
-
+}}}
 // ---------------------------------------------------------------------------
-#endif /* THEBC__SPECPP_OUTPUT_FORMAT_COMPILER_HPP */
+#endif /* CPP_SPECPP_OUTPUT_FORMAT_COMPILER_HPP */

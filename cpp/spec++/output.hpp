@@ -3,16 +3,15 @@
 // accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 // ----------------------------------------------------------------------------
-#ifndef OUTPUT_HPP
-#define OUTPUT_HPP
+#ifndef CPP_SPECPP_OUTPUT_HPP
+#define CPP_SPECPP_OUTPUT_HPP
 
 #include <boost/shared_ptr.hpp>
-#include <thebc/spec++/output_format/base.hpp>
+#include <cpp/spec++/output_format/base.hpp>
 
 // ----------------------------------------------------------------------------
 
-namespace spec
-{
+namespace cpp { namespace spec {
 
 // ----------------------------------------------------------------------------
 
@@ -66,11 +65,9 @@ void output::display(runner::result const& result)
     display();
 }
 
-} // namespace spec
+}}
 
 // ----------------------------------------------------------------------------
 
-
-
-#endif // OUTPUT_HPP
+#endif // CPP_SPECPP_OUTPUT_HPP
 

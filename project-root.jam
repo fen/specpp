@@ -1,8 +1,8 @@
 path-constant TOP : . ;
-path-constant THEBC_ROOT : . ;
+path-constant CPP_ROOT : . ;
 path-constant BUILD_PATH : ./bin ;
 path-constant BOOST_ROOT : third_party/boost ;
-path-constant THEBC_IMPORT : third_party/thebc ;
+path-constant CPP_IMPORT : third_party/cpp ;
 path-constant SPECPP : third_party/specpp ;
 
 use-project /boost/program_options : third_party/boost/libs/program_options/build ;

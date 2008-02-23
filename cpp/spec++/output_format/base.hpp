@@ -5,12 +5,12 @@
 
 // ---------------------------------------------------------------------------
 
-#ifndef THEBC_SPECPP_OUTPUT_FORMAT_BASE_HPP
-#define THEBC_SPECPP_OUTPUT_FORMAT_BASE_HPP
+#ifndef CPP_SPECPP_OUTPUT_FORMAT_BASE_HPP
+#define CPP_SPECPP_OUTPUT_FORMAT_BASE_HPP
 
 // ----------------------------------------------------------------------------
 
-namespace spec { namespace output_format {
+namespace cpp { namespace spec { namespace output_format {
 
 // ----------------------------------------------------------------------------
 
@@ -25,11 +25,10 @@ public:
     virtual void context_begin(std::ostream&, std::string const&) = 0;
     virtual void context_end(std::ostream&, std::string const&) = 0;
 
-    virtual void specifier(std::ostream&, spec::runner::specify_result&) = 0;
+    virtual void specifier(std::ostream&, cpp::spec::runner::specify_result&) = 0;
 };
 
 // ----------------------------------------------------------------------------
-}} // namespace spec::output_format
-
+}}}
 // ----------------------------------------------------------------------------
-#endif /* THEBC_SPECPP_OUTPUT_FORMAT_BASE_HPP */
+#endif /* CPP_SPECPP_OUTPUT_FORMAT_BASE_HPP */

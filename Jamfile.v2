@@ -21,7 +21,7 @@ else
 }
 
 
-project thebc
+project cpp
  :  requirements <include>.
     <include>$(BOOST_ROOT)
     <include>$(THEBC_IMPORT)
@@ -42,7 +42,7 @@ all-libraries =
 
 for local l in $(all-libraries)
 {
-        alias $(l) : libs/$(l)/build//thebc_$(l) ;
+        alias $(l) : libs/$(l)/build//cpp$(l) ;
         explicit $(l) ;
 }
 
@@ -53,5 +53,5 @@ libraries = $(all-libraries) ;
 # Make project ids of all libraries known.
 for local l in $(libraries)
 {
-    use-project /thebc/$(l) : libs/$(l)/build ;
+    use-project /cpp/$(l) : libs/$(l)/build ;
 }

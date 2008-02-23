@@ -4,9 +4,9 @@
 // http://www.boost.org/LICENSE_1_0.txt)
 // ---------------------------------------------------------------------------
 
-#ifndef EXPECTATION_HPP
-#define EXPECTATION_HPP
+#ifndef CPP_SPECPP_EXPECTATION_HPP
+#define CPP_SPECPP_EXPECTATION_HPP
 
-#include <thebc/spec++/expectation/actual.hpp>
+#include <cpp/spec++/expectation/actual.hpp>
 
-#endif // EXPECTATION_HPP
+#endif // CPP_SPECPP_EXPECTATION_HPP

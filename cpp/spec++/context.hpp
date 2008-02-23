@@ -3,21 +3,21 @@
 // accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 // ---------------------------------------------------------------------------
-#ifndef CONTEXT_HPP
-#define CONTEXT_HPP
+#ifndef CPP_SPECPP_CONTEXT_HPP
+#define CPP_SPECPP_CONTEXT_HPP
 
 // ---------------------------------------------------------------------------
-#define THEBC_CONTEXT( TEXT, DATA )\
+#define CPP_CONTEXT( TEXT, DATA )\
 namespace JOIN(JOIN(DATA, _namespace_),__LINE__){\
     typedef DATA    data;\
-    struct context_observer : spec::base_context_observer\
+    struct context_observer : cpp::spec::base_context_observer\
     {\
-        context_observer() : spec::base_context_observer(TEXT)\
+        context_observer() : cpp::spec::base_context_observer(TEXT)\
         {\
-            spec::context_handler::pointer ptr;\
+            cpp::spec::context_handler::pointer ptr;\
             ptr->register_context(this);\
         }\
-        using spec::base_context_observer::register_self;\
+        using cpp::spec::base_context_observer::register_self;\
     };\
     context_observer observer;\
 }\
@@ -25,4 +25,4 @@ namespace JOIN(JOIN(DATA, _namespace_),__LINE__)
 
 // ---------------------------------------------------------------------------
 
-#endif // CONTEXT_HPP
+#endif // CPP_SPECPP_CONTEXT_HPP

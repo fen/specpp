@@ -3,11 +3,10 @@
 // accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 // ---------------------------------------------------------------------------
-#ifndef BASE_SPECIFY_HPP
-#define BASE_SPECIFY_HPP
+#ifndef CPP_SPECPP_BASE_SPECIFY_HPP
+#define CPP_SPECPP_BASE_SPECIFY_HPP
 
-namespace spec
-{
+namespace cpp { namespace spec {
 
     struct base_specify
     {
@@ -25,6 +24,6 @@ namespace spec
         virtual void specify_method() = 0;
     };
 
-}
+}}
 
-#endif // BASE_SPECIFY_HPP
+#endif // CPP_SPECPP_BASE_SPECIFY_HPP

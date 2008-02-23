@@ -3,12 +3,13 @@
 // accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 // ---------------------------------------------------------------------------
-#ifndef RESULT_HPP
-#define RESULT_HPP
+#ifndef CPP_SPECPP_RESULT_HPP
+#define CPP_SPECPP_RESULT_HPP
 
 // ---------------------------------------------------------------------------
 
-namespace spec { namespace detail { namespace impl {
+namespace cpp { namespace spec { namespace detail { namespace impl {
+
 class specify_result
 {
 public:
@@ -74,6 +75,6 @@ private:
 typedef std::pair<std::string, std::vector<specify_result> > context_result;
 typedef std::vector<context_result> result;
 
-} } } // namespace spec::detail::impl
+}}}}
 
-#endif // RESULT_HPP
+#endif // CPP_SPECPP_RESULT_HPP

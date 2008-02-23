@@ -3,13 +3,12 @@
 // accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 // ---------------------------------------------------------------------------
-#ifndef CONTEXT_HANDLER_HPP
-#define CONTEXT_HANDLER_HPP
+#ifndef CPP_SPECPP_CONTEXT_HANDLER_HPP
+#define CPP_SPECPP_CONTEXT_HANDLER_HPP
 
 // ---------------------------------------------------------------------------
 
-namespace spec
-{
+namespace cpp { namespace spec {
 
     namespace detail{ namespace impl
     {
@@ -52,7 +51,6 @@ namespace spec
     // REVISIT (fred) : My singleton_ptr should be used this is not safe.
     typedef detail::singleton<detail::impl::context_handler> context_handler;
 
-} // namespace spec
+}}
 
-
-#endif // CONTEXT_HANDLER_HPP
+#endif // CPP_SPECPP_CONTEXT_HANDLER_HPP

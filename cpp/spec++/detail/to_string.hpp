@@ -5,8 +5,8 @@
 
 // ---------------------------------------------------------------------------
 
-#ifndef THEBC_SPECPP_DETAIL_TO_STRING_HPP
-#define THEBC_SPECPP_DETAIL_TO_STRING_HPP
+#ifndef CPP_SPECPP_DETAIL_TO_STRING_HPP
+#define CPP_SPECPP_DETAIL_TO_STRING_HPP
 
 // ---------------------------------------------------------------------------
 
@@ -15,7 +15,7 @@
 
 // ---------------------------------------------------------------------------
 
-namespace spec { namespace detail {
+namespace cpp { namespace spec { namespace detail {
 
 // ---------------------------------------------------------------------------
 namespace impl {
@@ -73,8 +73,8 @@ std::string to_string(bool v)
 }
 
 // ---------------------------------------------------------------------------
-}} // namespace spec::detail
+}}}
 
 
 // ---------------------------------------------------------------------------
-#endif /* THEBC_SPECPP_DETAIL_TO_STRING_HPP */
+#endif /* CPP_SPECPP_DETAIL_TO_STRING_HPP */

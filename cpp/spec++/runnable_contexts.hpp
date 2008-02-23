@@ -3,11 +3,11 @@
 // accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 // ---------------------------------------------------------------------------
-#ifndef RUNNABLE_CONTEXTS_HPP
-#define RUNNABLE_CONTEXTS_HPP
+#ifndef CPP_SPECPP_RUNNABLE_CONTEXTS_HPP
+#define CPP_SPECPP_RUNNABLE_CONTEXTS_HPP
 
 // ---------------------------------------------------------------------------
-namespace spec {
+namespace cpp { namespace spec {
 // ---------------------------------------------------------------------------
 template<typename HandlerT>
 class runnable_contexts
@@ -88,6 +88,6 @@ typename runnable_contexts<T>::const_iterator runnable_contexts<T>::end() const
 }
 
 // ---------------------------------------------------------------------------
-} // namespace spec
+}}
 // ---------------------------------------------------------------------------
-#endif // RUNNABLE_CONTEXTS_HPP
+#endif // CPP_SPECPP_RUNNABLE_CONTEXTS_HPP

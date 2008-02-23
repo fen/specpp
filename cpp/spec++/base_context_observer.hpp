@@ -3,11 +3,11 @@
 // accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 // ---------------------------------------------------------------------------
-#ifndef BASE_CONTEXT_OBSERVER_HPP
-#define BASE_CONTEXT_OBSERVER_HPP
+#ifndef CPP_SPECPP_BASE_CONTEXT_OBSERVER_HPP
+#define CPP_SPECPP_BASE_CONTEXT_OBSERVER_HPP
 
-namespace spec
-{
+namespace cpp { namespace spec {
+
     struct base_context_observer
     {
         std::vector<base_specify*> specifyers_m;
@@ -20,6 +20,6 @@ namespace spec
             specifyers_m.push_back( ptr );
         }
     };
-}
+}}
 
-#endif // BASE_CONTEXT_OBSERVER_HPP
+#endif // CPP_SPECPP_BASE_CONTEXT_OBSERVER_HPP

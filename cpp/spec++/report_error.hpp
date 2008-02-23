@@ -3,12 +3,12 @@
 // accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 // ----------------------------------------------------------------------------
-#ifndef THEBC_SPECPP_REPORT_ERROR_HPP
-#define THEBC_SPECPP_REPORT_ERROR_HPP
+#ifndef CPP_SPECPP_REPORT_ERROR_HPP
+#define CPP_SPECPP_REPORT_ERROR_HPP
 
-#include <thebc/spec++/exceptions.hpp>
+#include <cpp/spec++/exceptions.hpp>
 
-namespace spec {
+namespace cpp { namespace spec {
 
 bool
 report_error(std::string const& error_message)
@@ -17,7 +17,6 @@ report_error(std::string const& error_message)
     return false;
 }
 
-} // namespace spec
+}}
 
-
-#endif /* THEBC_SPECPP_REPORT_ERROR_HPP */
+#endif /* CPP_SPECPP_REPORT_ERROR_HPP */

@@ -3,15 +3,15 @@
 // accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 // ---------------------------------------------------------------------------
-#ifndef RUNNER_HPP
-#define RUNNER_HPP
+#ifndef CPP_SPECPP_RUNNER_HPP
+#define CPP_SPECPP_RUNNER_HPP
 
 #include <functional>
 #include <algorithm>
 
 // ---------------------------------------------------------------------------
 
-namespace spec {
+namespace cpp { namespace spec {
 // ---------------------------------------------------------------------------
 class runner
 {
@@ -145,8 +145,8 @@ bool runner::run_specify( std::string const& name )
 
 // ---------------------------------------------------------------------------
 
-} // namespace spec
+}}
 
 // ---------------------------------------------------------------------------
 
-#endif // RUNNER_HPP
+#endif // CPP_SPECPP_RUNNER_HPP

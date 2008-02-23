@@ -3,15 +3,14 @@
 // accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 // ----------------------------------------------------------------------------
-#ifndef THEBC_SPECPP_EXCEPTIONS_HPP
-#define THEBC_SPECPP_EXCEPTIONS_HPP
+#ifndef CPP_SPECPP_EXCEPTIONS_HPP
+#define CPP_SPECPP_EXCEPTIONS_HPP
 
 #include <string>
 #include <exception>
 
 // ----------------------------------------------------------------------------
-namespace spec
-{
+namespace cpp { namespace spec {
 
 // ----------------------------------------------------------------------------
 class expectation_notmet : public std::exception
@@ -34,6 +33,6 @@ private:
 };
 
 // ---------------------------------------------------------------------------
-} // namespace spec
+}}
 
-#endif /* THEBC_SPECPP_EXCEPTIONS_HPP */
+#endif /* CPP_SPECPP_EXCEPTIONS_HPP */

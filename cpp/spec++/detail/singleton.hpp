@@ -5,11 +5,11 @@
 
 // ---------------------------------------------------------------------------
 
-#ifndef DETAIL_SINGLETON_HPP
-#define DETAIL_SINGLETON_HPP
+#ifndef CPP_SPECPP_DETAIL_SINGLETON_HPP
+#define CPP_SPECPP_DETAIL_SINGLETON_HPP
 
 // ---------------------------------------------------------------------------
-namespace spec { namespace detail {
+namespace cpp { namespace spec { namespace detail {
 
 // ---------------------------------------------------------------------------
 template <typename T>
@@ -68,6 +68,6 @@ private:
 template<typename T>
 T* singleton<T>::m_instance=0;
 // ---------------------------------------------------------------------------
-}} // namespace spec::detail
+}}}
 
-#endif // DETAIL_SINGLETON_HPP
+#endif // CPP_SPECPP_DETAIL_SINGLETON_HPP
