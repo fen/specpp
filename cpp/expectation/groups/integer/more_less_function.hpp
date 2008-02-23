@@ -1,7 +1,7 @@
-#ifndef THEBC_SPECPP_EXPECTATION_GROUPS_INTEGER_MORE_LESS_FUNCTION_HPP
-#define THEBC_SPECPP_EXPECTATION_GROUPS_INTEGER_MORE_LESS_FUNCTION_HPP
+#ifndef CPP_EXPECTATION_GROUPS_INTEGER_MORE_LESS_FUNCTION_HPP
+#define CPP_EXPECTATION_GROUPS_INTEGER_MORE_LESS_FUNCTION_HPP
 
-#include <thebc/spec++/report_error.hpp>
+#include <cpp/spec++/report_error.hpp>
 #include "../../detail/check.hpp"
 #include "../../detail/message_chooser.hpp"
 
@@ -10,7 +10,7 @@
 #define WITH_EQUAL      true
 #define WITHOUT_EQUAL   false
 
-namespace spec { namespace groups { namespace integer {
+namespace cpp { namespace expectation { namespace groups { namespace integer {
 
 namespace detail {
 
@@ -24,7 +24,7 @@ namespace detail {
             template<typename Actual, typename Expected>
             bool operator()(Actual const& actual_value, Expected const& expected_value)
             {
-                return spec::detail::check<Not>( actual_value < expected_value );
+                return cpp::spec::detail::check<Not>( actual_value < expected_value );
             }
         };
         template<bool Not>
@@ -89,8 +89,6 @@ struct more_less_function
     Actual const& actual;
 };
 
-}}} // namespace spec::groups::integer
+}}}}
 
-
-
-#endif /* THEBC_SPECPP_EXPECTATION_GROUPS_INTEGER_MORE_LESS_FUNCTION_HPP */
+#endif /* CPP_EXPECTATION_GROUPS_INTEGER_MORE_LESS_FUNCTION_HPP */

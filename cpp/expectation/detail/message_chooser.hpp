@@ -1,11 +1,11 @@
-#ifndef THEBC_SPECPP_EXPECTATION_DETAIL_MESSAGE_CHOOSER_HPP
-#define THEBC_SPECPP_EXPECTATION_DETAIL_MESSAGE_CHOOSER_HPP
+#ifndef CPP_EXPECTATION_DETAIL_MESSAGE_CHOOSER_HPP
+#define CPP_EXPECTATION_DETAIL_MESSAGE_CHOOSER_HPP
 
 #include <string>
 
-#include <thebc/spec++/detail/to_string.hpp>
+#include <cpp/spec++/detail/to_string.hpp>
 
-namespace spec { namespace detail {
+namespace cpp { namespace expectation { namespace detail {
 
 template<bool Not, typename T1, typename T2>
 std::string message_chooser(std::string const& str1, std::string const& str2, T1 const& actual, T2 const& expected)
@@ -21,7 +21,7 @@ std::string message_chooser(std::string const& str1, std::string const& str2, T1
         message = str1;
     }
 
-    // Fund the location of the actual value
+    // Find the location of the actual value
     std::string::size_type loc = message.find( "${A}", 0 );
 
     if( loc != std::string::npos )
@@ -34,15 +34,13 @@ std::string message_chooser(std::string const& str1, std::string const& str2, T1
 
     if( loc != std::string::npos )
     {
-        message.replace( loc, 4, spec::detail::to_string( expected ) );
+        message.replace( loc, 4, cpp::spec::detail::to_string( expected ) );
     }
 
     return message;
 }
 
 
-}} // namespace spec::detail
+}}}
 
-
-
-#endif /* THEBC_SPECPP_EXPECTATION_DETAIL_MESSAGE_CHOOSER_HPP */
+#endif /* CPP_EXPECTATION_DETAIL_MESSAGE_CHOOSER_HPP */

@@ -1,12 +1,12 @@
-#ifndef THEBC_SPECPP_EXPECTATION_GROUPS_PREDICATE_PREDICATE_HPP
-#define THEBC_SPECPP_EXPECTATION_GROUPS_PREDICATE_PREDICATE_HPP
+#ifndef CPP_EXPECTATION_GROUPS_PREDICATE_PREDICATE_HPP
+#define CPP_EXPECTATION_GROUPS_PREDICATE_PREDICATE_HPP
 
 #include "predicate_function.hpp"
 #include "../../detail/if_not_impl.hpp"
 #include "../../detail/boolean_inverter.hpp"
 #include "../../detail/group_holder.hpp"
 
-namespace spec { namespace groups {
+namespace cpp { namespace expectation { namespace groups {
 
 template<typename Actual, bool Not = false>
 struct predicate_t: 
@@ -27,7 +27,6 @@ struct predicate_t:
     predicate::predicate_function<Actual, false, Not> be_false;
 };
     
-}} // namespace spec::groups
+}}}
 
-
-#endif /* THEBC_SPECPP_EXPECTATION_GROUPS_PREDICATE_PREDICATE_HPP */
+#endif /* CPP_EXPECTATION_GROUPS_PREDICATE_PREDICATE_HPP */

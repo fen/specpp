@@ -1,11 +1,11 @@
-#ifndef THEBC_SPECPP_EXPECTATION_GROUPS_TYPE_TYPE_HPP
-#define THEBC_SPECPP_EXPECTATION_GROUPS_TYPE_TYPE_HPP
+#ifndef CPP_EXPECTATION_GROUPS_TYPE_TYPE_HPP
+#define CPP_EXPECTATION_GROUPS_TYPE_TYPE_HPP
 
 #include "check_type.hpp"
 #include "../../detail/boolean_inverter.hpp"
 #include "../../detail/group_holder.hpp"
 
-namespace spec { namespace groups {
+namespace cpp { namespace expectation { namespace groups {
 
 template<typename Actual, bool Not = false>
 struct type_t: detail::if_not_impl<detail::group_holder<type_t<Actual, detail::boolean_inverter<Not>::value> >, Actual, Not>
@@ -50,7 +50,6 @@ struct type_t: detail::if_not_impl<detail::group_holder<type_t<Actual, detail::b
 
 };
     
-}} // namespace spec::groups
+}}}
 
-
-#endif /* THEBC_SPECPP_EXPECTATION_GROUPS_TYPE_TYPE_HPP */
+#endif /* CPP_EXPECTATION_GROUPS_TYPE_TYPE_HPP */

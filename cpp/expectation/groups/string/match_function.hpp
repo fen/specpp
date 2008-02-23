@@ -1,13 +1,13 @@
-#ifndef THEBC_SPECPP_EXPECTATION_GROUPS_STRING_MATCH_FUNCTION_HPP
-#define THEBC_SPECPP_EXPECTATION_GROUPS_STRING_MATCH_FUNCTION_HPP
+#ifndef CPP_EXPECTATION_GROUPS_STRING_MATCH_FUNCTION_HPP
+#define CPP_EXPECTATION_GROUPS_STRING_MATCH_FUNCTION_HPP
 
 #include <boost/regex.hpp>
 
 #include "../../detail/check.hpp"
 #include "../../detail/message_chooser.hpp"
-#include <thebc/spec++/report_error.hpp>
+#include <cpp/spec++/report_error.hpp>
 
-namespace spec { namespace groups { namespace string {
+namespace cpp { namespace expectation { namespace groups { namespace string {
 
 template<typename Actual, bool Not>
 struct match_function
@@ -44,7 +44,6 @@ struct match_function
     Actual const& actual;
 };
 
-}}} // namespace spec::groups::string
+}}}}
 
-
-#endif /* THEBC_SPECPP_EXPECTATION_GROUPS_STRING_MATCH_FUNCTION_HPP */
+#endif /* CPP_EXPECTATION_GROUPS_STRING_MATCH_FUNCTION_HPP */

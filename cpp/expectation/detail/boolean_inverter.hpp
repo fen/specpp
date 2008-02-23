@@ -1,7 +1,7 @@
-#ifndef THEBC_SPECPP_BOOLEAN_INVERTER_HPP
-#define THEBC_SPECPP_BOOLEAN_INVERTER_HPP
+#ifndef CPP_EXPECTATION_BOOLEAN_INVERTER_HPP
+#define CPP_EXPECTATION_BOOLEAN_INVERTER_HPP
 
-namespace spec { namespace detail {
+namespace cpp { namespace expectation { namespace detail {
 
 template<bool B>
 struct boolean_inverter;	
@@ -18,6 +18,6 @@ struct boolean_inverter<false>
 	static const bool value = true;
 };
 
-}} // namespace specpp::detail
+}}}
 
-#endif /* THEBC_SPECPP_BOOLEAN_INVERTER_HPP */
+#endif /* CPP_EXPECTATION_BOOLEAN_INVERTER_HPP */

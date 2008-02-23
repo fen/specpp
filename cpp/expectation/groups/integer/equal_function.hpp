@@ -1,11 +1,11 @@
-#ifndef THEBC_SPECPP_EXPECTATION_GROUPS_INTEGER_EQUAL_FUNCTION_HPP
-#define THEBC_SPECPP_EXPECTATION_GROUPS_INTEGER_EQUAL_FUNCTION_HPP
+#ifndef CPP_EXPECTATION_GROUPS_INTEGER_EQUAL_FUNCTION_HPP
+#define CPP_EXPECTATION_GROUPS_INTEGER_EQUAL_FUNCTION_HPP
 
-#include <thebc/spec++/report_error.hpp>
+#include <cpp/spec++/report_error.hpp>
 #include "../../detail/check.hpp"
 #include "../../detail/message_chooser.hpp"
 
-namespace spec { namespace groups { namespace integer {
+namespace cpp { namespace expectation { namespace groups { namespace integer {
 
 template<typename Actual, bool Not>
 struct equal_function
@@ -18,7 +18,7 @@ struct equal_function
     template<typename T>
     bool operator()(T const& expected)
     {
-        if( spec::detail::check<Not>( actual, expected ) )
+        if( cpp::expectation::detail::check<Not>( actual, expected ) )
         {
             return true;
         }
@@ -26,7 +26,7 @@ struct equal_function
         {
             return report_error
                    (
-                        spec::detail::message_chooser<Not>
+                        cpp::expectation::detail::message_chooser<Not>
                         (
                                 "Actual integer ${A} should have been equal to ${E} but wasn't"
                             ,   "Actual integer ${A} should not have been equal to ${E} but was"
@@ -41,7 +41,6 @@ struct equal_function
     Actual const& actual;
 };
 
-}}} // namespace spec::groups::integer
+}}}}
 
-
-#endif /* THEBC_SPECPP_EXPECTATION_GROUPS_INTEGER_EQUAL_FUNCTION_HPP */
+#endif /* CPP_EXPECTATION_GROUPS_INTEGER_EQUAL_FUNCTION_HPP */

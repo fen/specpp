@@ -1,12 +1,11 @@
-#ifndef THEBC_SPECPP_EXPECTATION_ACTUAL_HPP
-#define THEBC_SPECPP_EXPECTATION_ACTUAL_HPP
+#ifndef CPP_EXPECTATION_ACTUAL_HPP
+#define CPP_EXPECTATION_ACTUAL_HPP
 
 #include "detail/implementor.hpp"
 
 #include "groups/groups.hpp"
 
-namespace spec 
-{
+namespace cpp { namespace expectation {
 
 namespace detail 
 {
@@ -42,7 +41,6 @@ detail::actual_t<T> actual(T const& actual_value)
     return detail::actual_t<T>( actual_value );
 }
 
-} // namespace spec
+}}
 
-
-#endif /* THEBC_SPECPP_EXPECTATION_ACTUAL_HPP */
+#endif /* CPP_EXPECTATION_ACTUAL_HPP */

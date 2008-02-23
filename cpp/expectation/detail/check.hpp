@@ -1,10 +1,10 @@
-#ifndef THEBC_SPECPP_EXPECTATION_DETAIL_CHECK_HPP
-#define THEBC_SPECPP_EXPECTATION_DETAIL_CHECK_HPP
+#ifndef CPP_EXPECTATION_DETAIL_CHECK_HPP
+#define CPP_EXPECTATION_DETAIL_CHECK_HPP
 
 #include <cstring>
 #include <cwchar>
 
-namespace spec { namespace detail {
+namespace cpp { namespace expectation { namespace detail {
 
     template<bool Not>
     bool ret(bool p);
@@ -75,8 +75,6 @@ namespace spec { namespace detail {
         return ret<Not>( ::wcscmp( x, y ) == 0 );
     }
 
-}} // namespace spec::detail
+}}}
 
-
-
-#endif /* THEBC_SPECPP_EXPECTATION_DETAIL_CHECK_HPP */
+#endif /* CPP_EXPECTATION_DETAIL_CHECK_HPP */

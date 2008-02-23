@@ -1,7 +1,7 @@
-#ifndef THEBC_SPECPP_EXPECTATION_DETAIL_IF_NOT_IMPL_HPP
-#define THEBC_SPECPP_EXPECTATION_DETAIL_IF_NOT_IMPL_HPP
+#ifndef CPP_EXPECTATION_DETAIL_IF_NOT_IMPL_HPP
+#define CPP_EXPECTATION_DETAIL_IF_NOT_IMPL_HPP
 
-namespace spec { namespace detail {
+namespace cpp { namespace expectation { namespace detail {
     
 template<
         class T
@@ -39,7 +39,6 @@ struct if_not_impl<T,Actual,true>
     }
 };
 
-}} // namespace spec::detail
+}}}
 
-
-#endif /* THEBC_SPECPP_EXPECTATION_DETAIL_IF_NOT_IMPL_HPP */
+#endif /* CPP_EXPECTATION_DETAIL_IF_NOT_IMPL_HPP */

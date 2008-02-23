@@ -1,5 +1,5 @@
-#ifndef THEBC_SPECPP_EXPECTATION_GROUPS_INTEGER_INTEGER_HPP
-#define THEBC_SPECPP_EXPECTATION_GROUPS_INTEGER_INTEGER_HPP
+#ifndef CPP_EXPECTATION_GROUPS_INTEGER_INTEGER_HPP
+#define CPP_EXPECTATION_GROUPS_INTEGER_INTEGER_HPP
 
 #include "../../detail/if_not_impl.hpp"
 #include "equal_function.hpp"
@@ -7,7 +7,7 @@
 #include "../../detail/boolean_inverter.hpp"
 #include "../../detail/group_holder.hpp"
 
-namespace spec { namespace groups {
+namespace cpp { namespace expectation { namespace groups {
 
 template<typename Actual, bool Not = false>
 struct integer_t: detail::if_not_impl<detail::group_holder<integer_t<Actual, detail::boolean_inverter<Not>::value> >, Actual, Not> 
@@ -68,11 +68,11 @@ private:
     Actual const& actual_;
 };
 
-}} // namespace spec::groups
+}}}
 
 #undef USE_LESS
 #undef USE_MORE
 #undef WITH_EQUAL
 #undef WITHOUT_EQUAL
 
-#endif /* THEBC_SPECPP_EXPECTATION_GROUPS_INTEGER_INTEGER_HPP */
+#endif /* CPP_EXPECTATION_GROUPS_INTEGER_INTEGER_HPP */

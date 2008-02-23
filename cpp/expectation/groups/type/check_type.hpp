@@ -1,16 +1,16 @@
-#ifndef THEBC_SPECPP_EXPECTATION_GROUPS_TYPE_CHECK_TYPE_HPP
-#define THEBC_SPECPP_EXPECTATION_GROUPS_TYPE_CHECK_TYPE_HPP
+#ifndef CPP_EXPECTATION_GROUPS_TYPE_CHECK_TYPE_HPP
+#define CPP_EXPECTATION_GROUPS_TYPE_CHECK_TYPE_HPP
 
-#include <thebc/lengthof.hpp>
+#include <cpp/lengthof.hpp>
 
-namespace spec { namespace groups { namespace type {
+namespace cpp { namespace expectation { namespace groups { namespace type {
 
 namespace detail {
     template<typename T>
-    thebc::yes_type
+    cpp::yes_type
     is_same(T*, T*);
 
-    thebc::no_type
+    cpp::no_type
     is_same(...);
 
     template<bool p1, bool p2>
@@ -26,13 +26,12 @@ struct check_type
     static Has y;
     enum{ 
             value = detail::is_same_and<
-                                        (sizeof(thebc::yes_type) == sizeof(detail::is_same(&x, &y)))
+                                        (sizeof(cpp::yes_type) == sizeof(detail::is_same(&x, &y)))
                                     ,   (sizeof(Want) == sizeof(Has))
                                     >::value
         };
 };
 
-}}} // namespace spec::groups::type
+}}}}
 
-
-#endif /* THEBC_SPECPP_EXPECTATION_GROUPS_TYPE_CHECK_TYPE_HPP */
+#endif /* CPP_EXPECTATION_GROUPS_TYPE_CHECK_TYPE_HPP */
